@@ -39,6 +39,7 @@ int move2(int* prex, int* prey, int dir, int width, int height) {
 		
 		
 		PutChar(newx*8,newy*16,'p',Yellow,Black);
+		return dir;
 }
 
 

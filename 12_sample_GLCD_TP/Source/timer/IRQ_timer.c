@@ -15,7 +15,7 @@
 #include <stdio.h> /*for sprintf*/
 #include "GameData/PlayerInfo.h"
 #define MAP_WIDTH 30    // 240 pixels / 8px per character
-#define MAP_HEIGHT 32
+#define MAP_HEIGHT 18
 
 /******************************************************************************
 ** Function name:		Timer0_IRQHandler

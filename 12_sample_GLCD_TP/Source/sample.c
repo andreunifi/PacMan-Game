@@ -32,7 +32,7 @@
 
 
 #define MAP_WIDTH 30    // 240 pixels / 8px per character
-#define MAP_HEIGHT 32
+#define MAP_HEIGHT 18
 
 // Define the characters for the map
 extern volatile char map[MAP_HEIGHT][MAP_WIDTH];
@@ -111,6 +111,12 @@ int main(void)
                 poweruptiles,
                 map);
 	initializeMap();
+	GUI_Text(0,18*16,(uint8_t *)"Score",White,Black);
+	GUI_Text(0,19*16,(uint8_t *)"value",White,Black);
+	
+	GUI_Text(25*8,18*16,(uint8_t *)"Lives",White,Black);
+	GUI_Text(25*8,19*16,(uint8_t *)"PPP",Yellow,Black);
+	
 	//initializeMap();
 	joystick_init();
 	

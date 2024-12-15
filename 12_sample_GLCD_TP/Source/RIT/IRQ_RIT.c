@@ -24,20 +24,13 @@
 
 
 #define MAP_WIDTH 30    // 240 pixels / 8px per character
-#define MAP_HEIGHT 32
+#define MAP_HEIGHT 18
 
 
 //TODO: fix if joystick has chosen a non regular wat SW,NW;SE;NE
 
-extern int redraw;
-extern volatile char map[MAP_HEIGHT][MAP_WIDTH];
 volatile int down=0;
-extern PlayerInfo player;
-extern int emptytiles[MAP_HEIGHT*MAP_WIDTH];
-extern int wallstiles[MAP_HEIGHT*MAP_WIDTH];
-extern int cointiles[MAP_HEIGHT*MAP_WIDTH];
-extern int poweruptiles[MAP_HEIGHT*MAP_WIDTH];
-extern int teleportlocation[MAP_HEIGHT*MAP_WIDTH];
+
 int dir=-1;
 void RIT_IRQHandler (void)
 {					

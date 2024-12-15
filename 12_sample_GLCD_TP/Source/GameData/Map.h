@@ -2,7 +2,7 @@
 #define MAP_H
 
 #define MAP_WIDTH 30    // 240 pixels / 8px per character
-#define MAP_HEIGHT 32
+#define MAP_HEIGHT 18
 volatile int emptytiles[MAP_HEIGHT*MAP_WIDTH];
 volatile int wallstiles[MAP_HEIGHT*MAP_WIDTH];
 volatile int cointiles[MAP_HEIGHT*MAP_WIDTH];
