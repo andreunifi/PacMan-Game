@@ -130,7 +130,7 @@ int main(void)
 	
 	//LCD_DrawLine(0, 0, 200, 200, White);
 	//init_timer(0, 0x1312D0 ); 						/* 50ms * 25MHz = 1.25*10^6 = 0x1312D0 */
-	init_timer(0, 0x2625A0 ); 						  /* 1ms * 25MHz = 25*10^3 = 0x6108 */
+	init_timer(0, 0x225510 ); 						  /* 1ms * 25MHz = 25*10^3 = 0x6108 */
 	enable_timer(0);
 	//init_timer(0, 0x4E2 ); 						    /* 500us * 25MHz = 1.25*10^3 = 0x4E2 */
 	//init_timer(0, 0xC8 ); 						    /* 8us * 25MHz = 200 ~= 0xC8 */
