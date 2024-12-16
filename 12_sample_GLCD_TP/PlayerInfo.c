@@ -4,7 +4,7 @@ extern int score;
 volatile char scorechar[6];
 extern int lives;
 volatile char liveschar[3];
-
+extern int power;
 void drawScore(){
 		GUI_Text(0,19*16,(uint8_t *)scorechar,White,Black);
 
@@ -141,6 +141,7 @@ int move(int* prex, int* prey, int dir, int width, int height, const int* wallti
 		
 			if(poweruptiles[index] == 1){
 			score+=50;
+			power++;
 			poweruptiles[index] = 0;
 			sprintf(scorechar,
                "%d", score);

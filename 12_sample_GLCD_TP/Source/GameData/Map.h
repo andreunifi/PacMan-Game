@@ -1,6 +1,6 @@
 #ifndef MAP_H
 #define MAP_H
-
+#include <stdlib.h>
 #define MAP_WIDTH 30    // 240 pixels / 8px per character
 #define MAP_HEIGHT 18
 volatile int emptytiles[MAP_HEIGHT*MAP_WIDTH];
@@ -13,6 +13,7 @@ volatile int time=60;
 volatile int score=0;
 volatile int lives=1;
 
+int power=6;
 
 void initialize(int height, int width, 
                 int emptytiles[height * width], 

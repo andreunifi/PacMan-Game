@@ -29,8 +29,13 @@ void initialize(int height, int width,
                 wallstiles[index] = 0;
 								map[y][x]=' ';
 								if(count>0 && (y!= 8 && x != 0) && (y!= 8 && x != 29) ){
+									 int value = rand() % (1 + 1);
+									if(value){
 									map[y][x]='*';
 									count--;
+									
+									}
+									
 								}
 									
             }
@@ -41,11 +46,8 @@ void initialize(int height, int width,
                 cointiles[index] = 0;
             }
 
-            if (map[y][x] == 'O') { // Power-up tiles
-                poweruptiles[index] = 1;
-            } else {
-                poweruptiles[index] = 0;
-            }
+            if ((y == 8 && x == 0) || (y == 8 && x == 29))
+							teleportlocation[index]=1;
 						
 						
 						

@@ -149,7 +149,21 @@ void RIT_IRQHandler (void)
 	} */
 	
 	
-	
+	/* button management */
+	if(down>=1){ 
+		if((LPC_GPIO2->FIOPIN & (1<<11)) == 0){	/* KEY1 pressed */
+			GUI_Text((11 *8),(MAP_HEIGHT/2)*16,(uint8_t *)"Game Over!",Red,White);
+			down++;
+		}
+		else {	/* button released */
+			down=0;			
+			NVIC_EnableIRQ(EINT1_IRQn);							 /* enable Button interrupts			*/
+			LPC_PINCON->PINSEL4    |= (1 << 22);     /* External interrupt 0 pin selection */
+		}
+	}else{
+
+				down++;
+	} 
 	
 	
 	
