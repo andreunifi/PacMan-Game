@@ -39,13 +39,16 @@ extern volatile char map[MAP_HEIGHT][MAP_WIDTH];
 
 extern volatile int emptytiles[MAP_HEIGHT*MAP_WIDTH];
 extern volatile int wallstiles[MAP_HEIGHT*MAP_WIDTH];
-extern volatile int cointiles[MAP_HEIGHT*MAP_WIDTH];
-extern volatile int poweruptiles[MAP_HEIGHT*MAP_WIDTH];
-extern volatile int teleportlocation[MAP_HEIGHT*MAP_WIDTH];
 
+extern void initialize(int height, int width, 
+                int emptytiles[height * width], 
+                int wallstiles[height * width],
+                int cointiles[height * width],
+                int poweruptiles[height * width],
+                char map[height][width]);
 
 PlayerInfo player;
-volatile int redraw=0;
+
 
 void initializeMap(){
 for (int y = 0; y < MAP_HEIGHT; y++) {
@@ -112,10 +115,13 @@ int main(void)
                 map);
 	initializeMap();
 	GUI_Text(0,18*16,(uint8_t *)"Score",White,Black);
-	GUI_Text(0,19*16,(uint8_t *)"value",White,Black);
+	
+	
+	GUI_Text(14*8,18*16,(uint8_t *)"Time",White,Black);
+	GUI_Text(4*8,19*16,(uint8_t *)"0",White,Black);
 	
 	GUI_Text(25*8,18*16,(uint8_t *)"Lives",White,Black);
-	GUI_Text(25*8,19*16,(uint8_t *)"PPP",Yellow,Black);
+	GUI_Text(27*8,19*16,(uint8_t *)"PPP",Yellow,Black);
 	
 	//initializeMap();
 	joystick_init();
@@ -132,6 +138,8 @@ int main(void)
 	//init_timer(0, 0x1312D0 ); 						/* 50ms * 25MHz = 1.25*10^6 = 0x1312D0 */
 	init_timer(0, 0x225510 ); 						  /* 1ms * 25MHz = 25*10^3 = 0x6108 */
 	enable_timer(0);
+	init_timer(1,0x17D7840); //60 seconds timer
+	enable_timer(1);
 	//init_timer(0, 0x4E2 ); 						    /* 500us * 25MHz = 1.25*10^3 = 0x4E2 */
 	//init_timer(0, 0xC8 ); 						    /* 8us * 25MHz = 200 ~= 0xC8 */
 	

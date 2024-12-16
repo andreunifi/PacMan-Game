@@ -26,7 +26,8 @@
 ** Returned value:		None
 **
 ******************************************************************************/
-
+extern int time;
+volatile char timechar[3];
 
 extern int dir;
 extern PlayerInfo player;
@@ -36,10 +37,17 @@ extern int wallstiles[MAP_HEIGHT*MAP_WIDTH];
 extern int cointiles[MAP_HEIGHT*MAP_WIDTH];
 extern int poweruptiles[MAP_HEIGHT*MAP_WIDTH];
 extern int teleportlocation[MAP_HEIGHT*MAP_WIDTH];
-void TIMER0_IRQHandler (void)
-{
+
+void drawTime(){
+GUI_Text(15*8,19*16,(uint8_t *)timechar,White,Black);
+};
+
 	
 
+void TIMER0_IRQHandler (void) //this is the main game tick()
+{
+	
+	
 		
 	move(&player.x, &player.y, dir, MAP_WIDTH,MAP_HEIGHT, wallstiles,map);
   LPC_TIM0->IR = 1;			/* clear interrupt flag */
@@ -58,9 +66,36 @@ void TIMER0_IRQHandler (void)
 ******************************************************************************/
 void TIMER1_IRQHandler (void)
 {
+	if(time>0){
+	time--;
+  sprintf(timechar,
+               "%d", time);
+	drawTime();
+		
+	
+	}
+	
+	if(time==0){
+	disable_timer(0);
+		GUI_Text((11 *8),(MAP_HEIGHT/2)*16,(uint8_t *)"Game Over!",Red,White);
+	}	
+  
+	
+	
+	
+	
   LPC_TIM1->IR = 1;			/* clear interrupt flag */
   return;
 }
+
+void TIMER2_IRQHandler (void)
+{
+	
+  LPC_TIM2->IR = 1;			/* clear interrupt flag */
+  return;
+}
+
+
 
 /******************************************************************************
 **                            End Of File

@@ -2,7 +2,7 @@
 
 
 #include "GameData/Map.h"
-
+#include <string.h>
 
 
 
@@ -28,7 +28,7 @@ void initialize(int height, int width,
                 emptytiles[index] = 1;
                 wallstiles[index] = 0;
 								map[y][x]=' ';
-								if(count>0 ){
+								if(count>0 && (y!= 8 && x != 0) && (y!= 8 && x != 29) ){
 									map[y][x]='*';
 									count--;
 								}
@@ -67,7 +67,7 @@ volatile char map[MAP_HEIGHT][MAP_WIDTH] = {
     "#  #######  #     #  ######  #",
     "#                            #",
     "#  #######   #####   ######  #",
-    "<                            >",
+    "<                            >",        //9,
     "#  #######  #######  ######  #",
     "#  #     #  #     #  #    #  #",
     "#  #     #  #     #  #    #  #",

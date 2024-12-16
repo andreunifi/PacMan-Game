@@ -1,5 +1,17 @@
 
 #include "GameData/PlayerInfo.h"
+extern int score;
+volatile char scorechar[6];
+extern int lives;
+volatile char liveschar[3];
+
+void drawScore(){
+		GUI_Text(0,19*16,(uint8_t *)scorechar,White,Black);
+
+};
+void drawLives(){
+		
+};
 
 
 int move2(int* prex, int* prey, int dir, int width, int height) {
@@ -88,6 +100,55 @@ int move(int* prex, int* prey, int dir, int width, int height, const int* wallti
     if (walltiles[index] == 1) {
         return 0; // Move blocked by a wall
     }
+		if(cointiles[index] == 1){
+			score+=10;
+			cointiles[index] = 0;
+			sprintf(scorechar,
+               "%d", score);
+			drawScore();
+			
+		}
+		
+		if(newx==0 && newy==8){
+		map[*prey][*prex]=' ';
+		PutChar(*prex*8,*prey*16,' ',Black,Black);
+		
+			
+		
+		newx=29;
+		*prex = newx;
+    *prey = newy;
+		map[newy][newx]='p';
+		PutChar(newx*8,newy*16,'p',Yellow,Black);
+			return 1;
+		}
+		
+		
+		
+		if(newx==29 && newy==8){
+		map[*prey][*prex]=' ';
+		PutChar(*prex*8,*prey*16,' ',Black,Black);
+		
+			
+		
+		newx=0;
+		*prex = newx;
+    *prey = newy;
+		map[newy][newx]='p';
+		PutChar(newx*8,newy*16,'p',Yellow,Black);
+			return 1;
+		}
+		
+			if(poweruptiles[index] == 1){
+			score+=50;
+			poweruptiles[index] = 0;
+			sprintf(scorechar,
+               "%d", score);
+			drawScore();
+			
+		}
+
+		
 		map[*prey][*prex]=' ';
 		PutChar(*prex*8,*prey*16,' ',Black,Black);
     // Update position

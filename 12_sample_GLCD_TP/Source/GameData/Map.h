@@ -9,6 +9,11 @@ volatile int cointiles[MAP_HEIGHT*MAP_WIDTH];
 volatile int poweruptiles[MAP_HEIGHT*MAP_WIDTH];
 volatile int teleportlocation[MAP_HEIGHT*MAP_WIDTH];
 
+volatile int time=60;
+volatile int score=0;
+volatile int lives=1;
+
+
 void initialize(int height, int width, 
                 int emptytiles[height * width], 
                 int wallstiles[height * width],
