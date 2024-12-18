@@ -46,6 +46,25 @@ extern int cointiles[MAP_HEIGHT*MAP_WIDTH];
 extern int poweruptiles[MAP_HEIGHT*MAP_WIDTH];
 extern int teleportlocation[MAP_HEIGHT*MAP_WIDTH];
 
+
+
+
+
+uint16_t SinTable[45] =                                       /* ?????                       */
+{
+    410, 467, 523, 576, 627, 673, 714, 749, 778,
+    799, 813, 819, 817, 807, 789, 764, 732, 694, 
+    650, 602, 550, 495, 438, 381, 324, 270, 217,
+    169, 125, 87 , 55 , 30 , 12 , 2  , 0  , 6  ,   
+    20 , 41 , 70 , 105, 146, 193, 243, 297, 353
+};
+
+
+
+
+
+
+
 void drawTime(){
 GUI_Text(15*8,19*16,(uint8_t *)timechar,White,Black);
 };
@@ -131,7 +150,16 @@ void TIMER1_IRQHandler (void) //used to generate the countdown timer. #todo: can
 	
 	generatePower();
 	
-	
+//	static int sineticks=0;
+//	/* DAC management */	
+//	static int currentValue; 
+//	currentValue = SinTable[sineticks];
+//	currentValue -= 410;
+//	currentValue /= 1;
+//	currentValue += 410;
+//	LPC_DAC->DACR = currentValue <<6;
+//	sineticks++;
+//	if(sineticks==45) sineticks=0;
 	
 	
   LPC_TIM1->IR = 1;			/* clear interrupt flag */
@@ -140,7 +168,16 @@ void TIMER1_IRQHandler (void) //used to generate the countdown timer. #todo: can
 
 void TIMER2_IRQHandler (void)
 {
-	
+	static int sineticks=0;
+	/* DAC management */	
+	static int currentValue; 
+	currentValue = SinTable[sineticks];
+	currentValue -= 410;
+	currentValue /= 1;
+	currentValue += 410;
+	LPC_DAC->DACR = currentValue <<6;
+	sineticks++;
+	if(sineticks==45) sineticks=0;
   LPC_TIM2->IR = 1;			/* clear interrupt flag */
   return;
 }

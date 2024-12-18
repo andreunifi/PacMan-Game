@@ -139,8 +139,12 @@ int main(void)
 	//init_timer(0, 0x1312D0 ); 						/* 50ms * 25MHz = 1.25*10^6 = 0x1312D0 */
 	init_timer(0, 0x225510 ); 						  /* 1ms * 25MHz = 25*10^3 = 0x6108 */
 	enable_timer(0);
+	
 	init_timer(1,0x17D7840); //60 seconds timer
 	enable_timer(1);
+	
+	//init_timer(2,0x17D7840); //60 seconds timer
+	//enable_timer(2);
 	//init_timer(0, 0x4E2 ); 						    /* 500us * 25MHz = 1.25*10^3 = 0x4E2 */
 	//init_timer(0, 0xC8 ); 						    /* 8us * 25MHz = 200 ~= 0xC8 */
 	
