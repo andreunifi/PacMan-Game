@@ -17,6 +17,8 @@
 #include "../TouchPanel/TouchPanel.h"
 #include <stdio.h> /*for sprintf*/
 #include "GameData/PlayerInfo.h"
+#include "CAN/CAN.h"
+
 #define MAP_WIDTH 30    // 240 pixels / 8px per character
 #define MAP_HEIGHT 18
 
@@ -33,6 +35,9 @@ extern int time;
 volatile char timechar[3];
 extern int power;
 extern int dir;
+extern int lives;
+
+extern int score;
 extern PlayerInfo player;
 extern volatile char map[MAP_HEIGHT][MAP_WIDTH];
 extern int emptytiles[MAP_HEIGHT*MAP_WIDTH];
@@ -93,7 +98,7 @@ void TIMER0_IRQHandler (void) //this is the main game tick()
 ** Returned value:		None
 **
 ******************************************************************************/
-void TIMER1_IRQHandler (void)
+void TIMER1_IRQHandler (void) //used to generate the countdown timer. #todo: can be refractored.
 {
 	if(time>0){
 	time--;
@@ -109,6 +114,16 @@ void TIMER1_IRQHandler (void)
 		GUI_Text((11 *8),(MAP_HEIGHT/2)*16,(uint8_t *)"Game Over!",Red,White);
 	}	
   
+	
+	CAN_TxMsg.data[0] = (time & 0xFF); 
+	CAN_TxMsg.data[1] = 	lives & 0xFF;
+	CAN_TxMsg.data[2] = (score & 0x00FF ); 
+	CAN_TxMsg.data[3] = (score & 0xFF00 ) >> 8  ;
+	CAN_TxMsg.len = 4;
+	CAN_TxMsg.id = 2;
+	CAN_TxMsg.format = STANDARD_FORMAT;
+	CAN_TxMsg.type = DATA_FRAME;
+	CAN_wrMsg (1, &CAN_TxMsg);         
 	
 	
 	

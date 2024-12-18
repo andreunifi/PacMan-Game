@@ -28,7 +28,7 @@
 #include "GameData/PlayerInfo.h"
 #include "joystick/joystick.h"
 #include "RIT/RIT.h"
-
+#include "CAN/CAN.h"
 
 
 #define MAP_WIDTH 30    // 240 pixels / 8px per character
@@ -93,6 +93,7 @@ extern uint8_t ScaleFlag; // <- ScaleFlag needs to visible in order for the emul
 int main(void)
 {
   SystemInit();  												/* System Initialization (i.e., PLL)  */
+	CAN_Init();
 	player.lives=3;
 	player.x=1;
 	player.y=1;

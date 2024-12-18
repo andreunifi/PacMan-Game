@@ -12,7 +12,7 @@ volatile int teleportlocation[MAP_HEIGHT*MAP_WIDTH];
 volatile int time=60;
 volatile int score=0;
 volatile int lives=1;
-
+volatile int isPaused=0;
 int power=6;
 
 void initialize(int height, int width, 

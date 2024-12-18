@@ -11,6 +11,7 @@
 #include "RIT.h"
 #include "../led/led.h"
 #include "GameData/PlayerInfo.h"
+#include "timer/timer.h"
 
 /******************************************************************************
 ** Function name:		RIT_IRQHandler
@@ -30,10 +31,12 @@
 //TODO: fix if joystick has chosen a non regular wat SW,NW;SE;NE
 
 volatile int down=0;
+extern int isPaused;
 
 int dir=-1;
 void RIT_IRQHandler (void)
-{					
+{	
+	static int ext1=0;
 	static int up=0;
 	static int position=0;	
 	static int left=0;
@@ -149,21 +152,33 @@ void RIT_IRQHandler (void)
 	} */
 	
 	
-	/* button management */
-	if(down>=1){ 
-		if((LPC_GPIO2->FIOPIN & (1<<11)) == 0){	/* KEY1 pressed */
-			GUI_Text((11 *8),(MAP_HEIGHT/2)*16,(uint8_t *)"Game Over!",Red,White);
-			down++;
-		}
-		else {	/* button released */
-			down=0;			
-			NVIC_EnableIRQ(EINT1_IRQn);							 /* enable Button interrupts			*/
-			LPC_PINCON->PINSEL4    |= (1 << 22);     /* External interrupt 0 pin selection */
-		}
-	}else{
+//	if(ext1==1){
+//		
+//		
+//		if((LPC_GPIO2->FIOPIN & (1<<11)) == 0 ){	/* KEY1 pressed */
+//			if(isPaused){
+//			GUI_Text((13 *8),(MAP_HEIGHT/2)*16,(uint8_t *)"Pause",Blue,White);
+//			disable_timer(0);
+//			disable_timer(1);	
+//			isPaused=0;
+//			}else{
+//			GUI_Text((13 *8),(MAP_HEIGHT/2)*16,(uint8_t *)"#####",Blue,Black);
+//			enable_timer(0);	
+//			enable_timer(1);		
+//			isPaused=1;
+//			}
+//			ext1=0;
+//		}
+//		}
+//		else {	
+//			if((LPC_GPIO2->FIOPIN & (1<<11)) == 0 )
+//				ext1++;
+//		}
+//	
+//	
+	
 
-				down++;
-	} 
+
 	
 	
 	
