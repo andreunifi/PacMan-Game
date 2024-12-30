@@ -208,7 +208,7 @@ void TIMER3_IRQHandler (void){
     // Difficulty logic based on 'time'
     if (time > 45) {
         // Execute action for 100 ns interval
-        if (counter100ns >= 3000) {
+        if (counter100ns >= 30000) {
             // Action for difficulty 1
            moveGhost(&blinkly.prevx,&blinkly.prevy,MAP_WIDTH,MAP_HEIGHT,wallstiles,map,blinkly.status,player.x,player.y);
 						//PutChar(x*8,y*16,'M',Green,Black);
@@ -216,7 +216,7 @@ void TIMER3_IRQHandler (void){
         }
     } else if (time > 30) {
         // Execute action for 50 ns interval
-        if (counter50ns >= 100) {
+        if (counter50ns >= 15000) {
             // Action for difficulty 2
             moveGhost(&blinkly.prevx,&blinkly.prevy,MAP_WIDTH,MAP_HEIGHT,wallstiles,map,blinkly.status,player.x,player.y);
 						//PutChar(x*8,y*16,'K',Green,Black);
@@ -224,7 +224,7 @@ void TIMER3_IRQHandler (void){
         }
     } else if (time > 15) {
         // Execute action for 20 ns interval
-        if (counter20ns >= 50) {
+        if (counter20ns >= 5000) {
             // Action for difficulty 3
             moveGhost(&blinkly.prevx,&blinkly.prevy,MAP_WIDTH,MAP_HEIGHT,wallstiles,map,blinkly.status,player.x,player.y);
 						//PutChar(x*8,y*16,'D',Green,Black);
