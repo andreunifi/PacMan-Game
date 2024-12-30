@@ -14,46 +14,6 @@ void drawLives(){
 };
 
 
-int move2(int* prex, int* prey, int dir, int width, int height) {
-	int movx = 0, movy = 0;
-
-    // Determine the movement direction
-    switch (dir) {
-        case 0: // Up
-            movx = 0;
-            movy = -1;
-            break;
-        case 1: // Right
-            movx = 1;
-            movy = 0;
-            break;
-        case 2: // Down
-            movx = 0;
-            movy = 1;
-            break;
-        case 3: // Left
-            movx = -1;
-            movy = 0;
-            break;
-        default:
-            return -1; // Invalid direction
-    }
-		
-		int newx = *prex + movx;
-    int newy = *prey + movy;
-		
-		
-		
-		PutChar(*prex*8,*prey*16,' ',Black,Black);
-		
-		 *prex = newx;
-    *prey = newy;
-		
-		
-		PutChar(newx*8,newy*16,'p',Yellow,Black);
-		return dir;
-}
-
 
 
 

@@ -5,7 +5,7 @@
 #include <stdio.h> /*for sprintf*/
 
 int move(int *prex, int *prey, int dir, int width, int height, const int* walltiles, volatile char map[width][height]);
-int move2(int *prex, int *prey, int dir, int width, int height);
+
 
 
 #define MAP_WIDTH 30    // 240 pixels / 8px per character

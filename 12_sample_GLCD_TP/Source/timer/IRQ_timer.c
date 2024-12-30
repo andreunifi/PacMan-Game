@@ -19,6 +19,8 @@
 #include "GameData/PlayerInfo.h"
 #include "CAN/CAN.h"
 
+#include "GameData/GhostAI.h"
+
 #define MAP_WIDTH 30    // 240 pixels / 8px per character
 #define MAP_HEIGHT 18
 
@@ -46,7 +48,7 @@ extern int cointiles[MAP_HEIGHT*MAP_WIDTH];
 extern int poweruptiles[MAP_HEIGHT*MAP_WIDTH];
 extern int teleportlocation[MAP_HEIGHT*MAP_WIDTH];
 
-
+extern GhostInfo blinkly;
 
 
 
@@ -101,6 +103,8 @@ void TIMER0_IRQHandler (void) //this is the main game tick()
 	move(&player.x, &player.y, dir, MAP_WIDTH,MAP_HEIGHT, wallstiles,map);
 	
 	
+
+		
 	
 	
   LPC_TIM0->IR = 1;			/* clear interrupt flag */
@@ -144,8 +148,7 @@ void TIMER1_IRQHandler (void) //used to generate the countdown timer. #todo: can
 	CAN_TxMsg.type = DATA_FRAME;
 	CAN_wrMsg (1, &CAN_TxMsg);         
 	
-	
-	
+
 	
 	
 	generatePower();
@@ -168,6 +171,8 @@ void TIMER1_IRQHandler (void) //used to generate the countdown timer. #todo: can
 
 void TIMER2_IRQHandler (void)
 {
+	
+	
 	static int sineticks=0;
 	/* DAC management */	
 	static int currentValue; 
@@ -182,7 +187,51 @@ void TIMER2_IRQHandler (void)
   return;
 }
 
+void TIMER3_IRQHandler (void){
+		
+ static uint32_t counter100ns = 0; // Counter for 100 ns actions
+    static uint32_t counter50ns = 0;  // Counter for 50 ns actions
+    static uint32_t counter20ns = 0;  // Counter for 20 ns actions
 
+    // Increment counters with each interrupt
+    counter100ns += 10;  // 10 ns per interrupt
+    counter50ns += 10;
+    counter20ns += 10;
+		
+	
+		 int x=rand() % (30 + 1);
+		 int y= rand() % (18 + 1);
+		
+		moveGhost(&blinkly.prevx,&blinkly.prevy,NULL,NULL,wallstiles,map,blinkly.status,player.x,player.y);
+	
+		
+    // Difficulty logic based on 'time'
+    if (time > 45) {
+        // Execute action for 100 ns interval
+        if (counter100ns >= 100) {
+            // Action for difficulty 1
+           
+						//PutChar(x*8,y*16,'M',Green,Black);
+            counter100ns = 0; // Reset counter
+        }
+    } else if (time > 30) {
+        // Execute action for 50 ns interval
+        if (counter50ns >= 50) {
+            // Action for difficulty 2
+            
+						//PutChar(x*8,y*16,'K',Green,Black);
+            counter50ns = 0; // Reset counter
+        }
+    } else if (time > 15) {
+        // Execute action for 20 ns interval
+        if (counter20ns >= 20) {
+            // Action for difficulty 3
+            
+						//PutChar(x*8,y*16,'D',Green,Black);
+            counter20ns = 0; // Reset counter
+        }
+    }
+};
 
 /******************************************************************************
 **                            End Of File

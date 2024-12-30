@@ -638,9 +638,14 @@
               <FilePath>.\Source\GameData\Map.h</FilePath>
             </File>
             <File>
-              <FileName>next_state.s</FileName>
-              <FileType>2</FileType>
-              <FilePath>.\Source\next_state.s</FilePath>
+              <FileName>GhostAI.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\GhostAI.c</FilePath>
+            </File>
+            <File>
+              <FileName>GhostAI.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Source\GameData\GhostAI.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -1310,9 +1315,14 @@
               <FilePath>.\Source\GameData\Map.h</FilePath>
             </File>
             <File>
-              <FileName>next_state.s</FileName>
-              <FileType>2</FileType>
-              <FilePath>.\Source\next_state.s</FilePath>
+              <FileName>GhostAI.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\GhostAI.c</FilePath>
+            </File>
+            <File>
+              <FileName>GhostAI.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Source\GameData\GhostAI.h</FilePath>
             </File>
           </Files>
         </Group>

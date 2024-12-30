@@ -29,6 +29,7 @@
 #include "joystick/joystick.h"
 #include "RIT/RIT.h"
 #include "CAN/CAN.h"
+#include "GameData/GhostAI.h"
 
 
 #define MAP_WIDTH 30    // 240 pixels / 8px per character
@@ -48,7 +49,7 @@ extern void initialize(int height, int width,
                 char map[height][width]);
 
 PlayerInfo player;
-
+GhostInfo blinkly;
 
 void initializeMap(){
 for (int y = 0; y < MAP_HEIGHT; y++) {
@@ -61,17 +62,19 @@ for (int y = 0; y < MAP_HEIGHT; y++) {
       if (tile == '#') {
         color = Blue ;  // Wall
       } else if (tile == ' ') {
-        color = Red;  // Path
+          // Path
 				tile=' ';
       } else if (tile == 'P') {
         color = Yellow;  // Pac-Man
 				player.x=x;
 				player.y=y;
-      } else if(tile == '*')
-			
-			{
+      } else if(tile == '*'){
+				
         color = Yellow;  // Default to path color
-      }
+				
+      }else if(tile == 'O'){
+			color = Red;
+			}
 			PutChar( x*8, y*16, tile, color, Black);
 		}
 		}
@@ -94,6 +97,13 @@ int main(void)
 {
   SystemInit();  												/* System Initialization (i.e., PLL)  */
 	CAN_Init();
+	
+	blinkly.x=3;
+	blinkly.y=10;
+	blinkly.status=1;
+	blinkly.prevx=3;
+	blinkly.prevy=10;
+	
 	player.lives=3;
 	player.x=1;
 	player.y=1;
@@ -143,8 +153,11 @@ int main(void)
 	init_timer(1,0x17D7840); //60 seconds timer
 	enable_timer(1);
 	
-	//init_timer(2,0x17D7840); //60 seconds timer
-	//enable_timer(2);
+	init_timer(2,0x225510); //60 seconds timer
+	enable_timer(2);
+	
+	init_timer(3,0x225510); //60 seconds timer
+	enable_timer(3);
 	//init_timer(0, 0x4E2 ); 						    /* 500us * 25MHz = 1.25*10^3 = 0x4E2 */
 	//init_timer(0, 0xC8 ); 						    /* 8us * 25MHz = 200 ~= 0xC8 */
 	
