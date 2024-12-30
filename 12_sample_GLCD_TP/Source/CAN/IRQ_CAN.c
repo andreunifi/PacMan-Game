@@ -49,7 +49,7 @@ void CAN_IRQHandler (void)  {
 //  }
 	if (icr & (1 << 1)) {                         /* CAN Controller #1 meassage is transmitted */
 		// do nothing in this example
-		GUI_Text(7*8,18*16,(uint8_t *)"Ty",White,Black);
+		GUI_Text(7*8,18*16,(uint8_t *)"Tx",White,Black);
 	}
 		
 	/* check CAN controller 2 */

@@ -54,7 +54,7 @@ void initialize(int height, int width,
         }
     }
 		map[1][1]='P';
-		map[3][10]='O';
+		map[10][2]='O';
 }
 
 

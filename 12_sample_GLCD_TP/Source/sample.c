@@ -98,10 +98,10 @@ int main(void)
   SystemInit();  												/* System Initialization (i.e., PLL)  */
 	CAN_Init();
 	
-	blinkly.x=3;
+	blinkly.x=2;
 	blinkly.y=10;
 	blinkly.status=1;
-	blinkly.prevx=3;
+	blinkly.prevx=2;
 	blinkly.prevy=10;
 	
 	player.lives=3;

@@ -202,31 +202,31 @@ void TIMER3_IRQHandler (void){
 		 int x=rand() % (30 + 1);
 		 int y= rand() % (18 + 1);
 		
-		moveGhost(&blinkly.prevx,&blinkly.prevy,NULL,NULL,wallstiles,map,blinkly.status,player.x,player.y);
+		
 	
 		
     // Difficulty logic based on 'time'
     if (time > 45) {
         // Execute action for 100 ns interval
-        if (counter100ns >= 100) {
+        if (counter100ns >= 3000) {
             // Action for difficulty 1
-           
+           moveGhost(&blinkly.prevx,&blinkly.prevy,MAP_WIDTH,MAP_HEIGHT,wallstiles,map,blinkly.status,player.x,player.y);
 						//PutChar(x*8,y*16,'M',Green,Black);
             counter100ns = 0; // Reset counter
         }
     } else if (time > 30) {
         // Execute action for 50 ns interval
-        if (counter50ns >= 50) {
+        if (counter50ns >= 100) {
             // Action for difficulty 2
-            
+            moveGhost(&blinkly.prevx,&blinkly.prevy,MAP_WIDTH,MAP_HEIGHT,wallstiles,map,blinkly.status,player.x,player.y);
 						//PutChar(x*8,y*16,'K',Green,Black);
             counter50ns = 0; // Reset counter
         }
     } else if (time > 15) {
         // Execute action for 20 ns interval
-        if (counter20ns >= 20) {
+        if (counter20ns >= 50) {
             // Action for difficulty 3
-            
+            moveGhost(&blinkly.prevx,&blinkly.prevy,MAP_WIDTH,MAP_HEIGHT,wallstiles,map,blinkly.status,player.x,player.y);
 						//PutChar(x*8,y*16,'D',Green,Black);
             counter20ns = 0; // Reset counter
         }

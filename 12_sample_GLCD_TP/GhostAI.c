@@ -25,8 +25,8 @@ int moveGhost(int *prex, int *prey, int width, int height, const int* walltiles,
 				*prex=nextX;
 				*prey=nextY;
 				
-				map[nextY][nextX]='p';
-				PutChar(nextX*8,nextY*16,'O',Yellow,Black);
+				map[nextY][nextX]='0';
+				PutChar(nextX*8,nextY*16,'O',Red,Black);
         
         return 1; // Move successful
     }
