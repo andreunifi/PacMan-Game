@@ -102,6 +102,7 @@ void TIMER0_IRQHandler (void) //this is the main game tick()
 		
 	move(&player.x, &player.y, dir, MAP_WIDTH,MAP_HEIGHT, wallstiles,map);
 	
+
 	
 
 		
@@ -149,7 +150,16 @@ void TIMER1_IRQHandler (void) //used to generate the countdown timer. #todo: can
 	CAN_wrMsg (1, &CAN_TxMsg);         
 	
 
+	if(blinkly.status==2){
+		if(blinkly.remainingtime >0){
+		blinkly.remainingtime--;
+		}else{
+		blinkly.status=1;
+		blinkly.remainingtime=10;	
+		}
 	
+		
+	}
 	
 	generatePower();
 	
@@ -222,7 +232,7 @@ void TIMER3_IRQHandler (void){
 						//PutChar(x*8,y*16,'K',Green,Black);
             counter50ns = 0; // Reset counter
         }
-    } else if (time > 15) {
+    } else if (time < 30 ) {
         // Execute action for 20 ns interval
         if (counter20ns >= 10000) {
             // Action for difficulty 3
@@ -232,7 +242,7 @@ void TIMER3_IRQHandler (void){
         }
     }
 		
-		if(blinkly.x == player.x && blinkly.y == player.y){
+		if(blinkly.x == player.x && blinkly.y == player.y && blinkly.status==1){
 			if(player.lives>0){
 			map[player.y][player.x]=' ';
 			

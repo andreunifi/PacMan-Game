@@ -37,6 +37,27 @@ int moveGhost(int *prex, int *prey, int width, int height, const int* walltiles,
     }
 
     if (mode == 2) { // Scared mode (does nothing for now)
+			  int nextX, nextY;
+				//this goes in the opposite direction than player
+        aStar(*prex, *prey, blinkly.x + (blinkly.x - playerX), blinkly.y + (blinkly.y - playerY), width, height, walltiles, &nextX, &nextY);
+				
+			
+				map[*prey][*prex]=' ';
+				PutChar(*prex*8,*prey*16,' ',Black,Black);
+    // Update position
+				blinkly.prevx=*prex;
+				blinkly.prevy=*prey;
+				*prex=nextX;
+				*prey=nextY;
+				
+				map[nextY][nextX]='0';
+				PutChar(nextX*8,nextY*16,'O',Blue,Black);
+        blinkly.x=nextX;
+				blinkly.y=nextY;
+			
+			
+			
+			
         return 0;
     }
 

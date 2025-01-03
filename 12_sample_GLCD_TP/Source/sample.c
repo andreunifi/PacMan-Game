@@ -103,7 +103,7 @@ int main(void)
 	blinkly.status=1;
 	blinkly.prevx=2;
 	blinkly.prevy=10;
-	
+	blinkly.remainingtime=10;
 	player.lives=3;
 	player.x=1;
 	player.y=1;

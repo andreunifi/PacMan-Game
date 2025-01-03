@@ -17,7 +17,7 @@ typedef struct {
     int status;
     int x, y;
     int prevx, prevy;
-	int remainingtime;
+		int remainingtime;
 
 } GhostInfo;
 
