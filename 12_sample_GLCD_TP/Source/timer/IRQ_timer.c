@@ -135,6 +135,8 @@ void TIMER1_IRQHandler (void) //used to generate the countdown timer. #todo: can
 	
 	if(time==0){
 	disable_timer(0);
+	disable_timer(1);
+	disable_timer(2);
 		GUI_Text((11 *8),(MAP_HEIGHT/2)*16,(uint8_t *)"Game Over!",Red,White);
 	}	
   
@@ -159,6 +161,24 @@ void TIMER1_IRQHandler (void) //used to generate the countdown timer. #todo: can
 		}
 	
 		
+	}
+	
+	if(blinkly.status==3 ){
+		if(blinkly.respawntime > 0){
+		blinkly.respawntime--;
+		}else{
+		blinkly.prevx=2;
+		blinkly.prevy=10;
+		blinkly.x=2;
+		blinkly.y=10;
+				
+		map[10][2]='O';
+		PutChar(2*8,10*16,'O',Red,Black);	
+			
+		blinkly.status=1;
+		blinkly.respawntime=3;	
+		}
+	
 	}
 	
 	generatePower();

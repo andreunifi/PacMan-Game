@@ -107,7 +107,8 @@ int move(int* prex, int* prey, int dir, int width, int height, const int* wallti
 			sprintf(scorechar,
                "%d", score);
 			drawScore();
-			blinkly.status=2;	
+			blinkly.status=2;
+			blinkly.remainingtime=10;
 			
 		}
 		
@@ -123,17 +124,13 @@ int move(int* prex, int* prey, int dir, int width, int height, const int* wallti
 		PutChar(newx*8,newy*16,'p',Yellow,Black);
 		
 		if(newx == blinkly.x && newy == blinkly.y && blinkly.status==2){
+			blinkly.status=3;
+			blinkly.remainingtime=10;
+			
 			
 	
     // Update position after being eaten
-				blinkly.prevx=2;
-				blinkly.prevy=10;
-				blinkly.x=2;
-				blinkly.y=10;
-				blinkly.status=1;
-				blinkly.remainingtime=10;
-				map[10][2]='O';
-				PutChar(2*8,10*16,'O',Red,Black);
+				
 
 				
 		}

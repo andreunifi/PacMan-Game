@@ -18,6 +18,7 @@ typedef struct {
     int x, y;
     int prevx, prevy;
 		int remainingtime;
+		int respawntime;
 
 } GhostInfo;
 

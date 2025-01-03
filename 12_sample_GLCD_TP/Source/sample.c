@@ -104,9 +104,11 @@ int main(void)
 	blinkly.prevx=2;
 	blinkly.prevy=10;
 	blinkly.remainingtime=10;
+	blinkly.respawntime=3;
 	player.lives=3;
 	player.x=1;
 	player.y=1;
+	
 	joystick_init();
   LCD_Initialization();
 	
