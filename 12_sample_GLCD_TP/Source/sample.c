@@ -133,7 +133,7 @@ int main(void)
 	
 	
 	GUI_Text(14*8,18*16,(uint8_t *)"Time",White,Black);
-	GUI_Text(2*8,19*16,(uint8_t *)"0",White,Black);
+	//GUI_Text(2*8,19*16,(uint8_t *)"0",White,Black);
 	
 	GUI_Text(25*8,18*16,(uint8_t *)"Lives",White,Black);
 	GUI_Text(27*8,19*16,(uint8_t *)"P",Yellow,Black);
