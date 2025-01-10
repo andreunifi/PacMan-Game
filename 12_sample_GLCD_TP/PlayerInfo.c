@@ -6,6 +6,7 @@ extern int lives;
 extern GhostInfo blinkly;
 volatile char liveschar[3];
 extern int power;
+extern int count;
 void drawScore(){
 		GUI_Text(0,19*16,(uint8_t *)scorechar,White,Black);
 
@@ -64,13 +65,17 @@ int move(int* prex, int* prey, int dir, int width, int height, const int* wallti
 		if(cointiles[index] == 1){
 			score+=10;
 			cointiles[index] = 0;
-			sprintf(scorechar,
-               "%d", score);
+
 			drawScore();
-			
+			count--;
+			if(count==0 && power == 0){
+			disable_timer(0);
+			disable_timer(1);
+			GUI_Text((11 *8),(MAP_HEIGHT/2)*16,(uint8_t *)"You win!",Green,White);
+			}
 		}
 		
-		if(newx==0 && newy==8){
+		if(newx==0 && newy==9){
 		map[*prey][*prex]=' ';
 		PutChar(*prex*8,*prey*16,' ',Black,Black);
 		
@@ -86,7 +91,7 @@ int move(int* prex, int* prey, int dir, int width, int height, const int* wallti
 		
 		
 		
-		if(newx==29 && newy==8){
+		if(newx==29 && newy==9){
 		map[*prey][*prex]=' ';
 		PutChar(*prex*8,*prey*16,' ',Black,Black);
 		
@@ -102,10 +107,8 @@ int move(int* prex, int* prey, int dir, int width, int height, const int* wallti
 		
 			if(poweruptiles[index] == 1){
 			score+=50;
-			power++;
 			poweruptiles[index] = 0;
-			sprintf(scorechar,
-               "%d", score);
+			
 			drawScore();
 			blinkly.status=2;
 			blinkly.remainingtime=10;

@@ -30,7 +30,7 @@
 #include "RIT/RIT.h"
 #include "CAN/CAN.h"
 #include "GameData/GhostAI.h"
-
+#include "button.h"
 
 #define MAP_WIDTH 30    // 240 pixels / 8px per character
 #define MAP_HEIGHT 18
@@ -50,7 +50,7 @@ extern void initialize(int height, int width,
 
 PlayerInfo player;
 GhostInfo blinkly;
-
+volatile int pause=1;
 void initializeMap(){
 for (int y = 0; y < MAP_HEIGHT; y++) {
     for (int x = 0; x < MAP_WIDTH; x++) {
@@ -74,6 +74,8 @@ for (int y = 0; y < MAP_HEIGHT; y++) {
 				
       }else if(tile == 'O'){
 			color = Red;
+			}else if(tile == 'x'){
+			tile = ' ';
 			}
 			PutChar( x*8, y*16, tile, color, Black);
 		}
@@ -99,10 +101,10 @@ int main(void)
 	CAN_Init();
 	
 	blinkly.x=2;
-	blinkly.y=10;
+	blinkly.y=9;
 	blinkly.status=1;
 	blinkly.prevx=2;
-	blinkly.prevy=10;
+	blinkly.prevy=9;
 	blinkly.remainingtime=10;
 	blinkly.respawntime=3;
 	player.lives=3;
@@ -150,20 +152,20 @@ int main(void)
 	//LCD_DrawLine(0, 0, 200, 200, White);
 	//init_timer(0, 0x1312D0 ); 						/* 50ms * 25MHz = 1.25*10^6 = 0x1312D0 */
 	init_timer(0, 0x225510 ); 						  /* 1ms * 25MHz = 25*10^3 = 0x6108 */
-	enable_timer(0);
+	
 	
 	init_timer(1,0x17D7840); //60 seconds timer
-	enable_timer(1);
 	
-	init_timer(2,0x225510); //60 seconds timer
-	enable_timer(2);
+	
+	//init_timer(2,0x225510); //60 seconds timer
+	
 	
 	init_timer(3,0x225510); //60 seconds timer
-	enable_timer(3);
-	//init_timer(0, 0x4E2 ); 						    /* 500us * 25MHz = 1.25*10^3 = 0x4E2 */
-	//init_timer(0, 0xC8 ); 						    /* 8us * 25MHz = 200 ~= 0xC8 */
+	//enable_timer(3);
+	BUTTON_init();
+	GUI_Text((11 *8),(MAP_HEIGHT/2)*16,(uint8_t *)"Pause",Yellow,White);
 	
-	//enable_timer(0);
+	
 	
 	LPC_SC->PCON |= 0x1;									/* power-down	mode										*/
 	LPC_SC->PCON &= ~(0x2);						

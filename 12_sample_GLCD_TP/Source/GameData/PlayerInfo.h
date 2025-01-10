@@ -3,6 +3,9 @@
 
 #include "GLCD/GLCD.h" 
 #include <stdio.h> /*for sprintf*/
+#include "LPC17xx.h"
+#include "timer.h"
+
 #include "GameData/GhostAI.h"
 int move(int *prex, int *prey, int dir, int width, int height, const int* walltiles, volatile char map[width][height]);
 

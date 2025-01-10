@@ -137,6 +137,8 @@ void TIMER1_IRQHandler (void) //used to generate the countdown timer. #todo: can
 	disable_timer(0);
 	disable_timer(1);
 	disable_timer(2);
+	disable_timer(3);
+		
 		GUI_Text((11 *8),(MAP_HEIGHT/2)*16,(uint8_t *)"Game Over!",Red,White);
 	}	
   
@@ -203,25 +205,15 @@ void TIMER2_IRQHandler (void)
 {
 	
 	
-	static int sineticks=0;
-	/* DAC management */	
-	static int currentValue; 
-	currentValue = SinTable[sineticks];
-	currentValue -= 410;
-	currentValue /= 1;
-	currentValue += 410;
-	LPC_DAC->DACR = currentValue <<6;
-	sineticks++;
-	if(sineticks==45) sineticks=0;
   LPC_TIM2->IR = 1;			/* clear interrupt flag */
   return;
 }
 
 void TIMER3_IRQHandler (void){
 		
- static uint32_t counter100ns = 0; // Counter for 100 ns actions
-    static uint32_t counter50ns = 0;  // Counter for 50 ns actions
-    static uint32_t counter20ns = 0;  // Counter for 20 ns actions
+ static int counter100ns = 0; // Counter for 100 ns actions
+    static int counter50ns = 0;  // Counter for 50 ns actions
+    static int counter20ns = 0;  // Counter for 20 ns actions
 
     // Increment counters with each interrupt
     counter100ns += 10;  // 10 ns per interrupt
@@ -282,10 +274,10 @@ void TIMER3_IRQHandler (void){
 			map[blinkly.y][blinkly.x]=' ';
 
 			blinkly.prevx=2;
-			blinkly.prevy=10;
+			blinkly.prevy=9;
 			blinkly.x=2;
-			blinkly.y=10;
-			map[10][2]='O';
+			blinkly.y=9;
+			map[9][2]='O';
 			PutChar(blinkly.x*8,blinkly.y*16,'O',Red,Black);			
 
 			

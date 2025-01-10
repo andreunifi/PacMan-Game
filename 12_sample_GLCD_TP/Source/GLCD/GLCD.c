@@ -502,6 +502,7 @@ void LCD_SetPoint(uint16_t Xpos,uint16_t Ypos,uint16_t point)
 	LCD_WriteReg(0x0022,point);
 }
 
+
 /******************************************************************************
 * Function Name  : LCD_DrawLine
 * Description    : Bresenham's line algorithm

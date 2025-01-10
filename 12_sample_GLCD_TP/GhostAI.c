@@ -1,6 +1,6 @@
 #include "GameData/GhostAI.h"
 extern GhostInfo blinkly;
-
+#include<stdlib.h>
 
 int heuristic(int x1, int y1, int x2, int y2) {
     return abs(x1 - x2) + abs(y1 - y2); // Manhattan distance
@@ -20,9 +20,22 @@ int moveGhost(int *prex, int *prey, int width, int height, const int* walltiles,
         int nextX, nextY;
         aStar(*prex, *prey, playerX, playerY, width, height, walltiles, &nextX, &nextY);
 				
-			
+				
+				
+			  if(cointiles[(*prey)*MAP_WIDTH + (*prex)] == 1){
+					
+					map[*prey][*prex]='*';
+					PutChar(*prex*8,*prey*16,'*',Yellow,Black);
+				}else if(poweruptiles[(*prey)*MAP_WIDTH + (*prex)] == 1){
+					
+				map[*prey][*prex]='X';
+				PutChar(*prex*8,*prey*16,'X',Red,Black);
+				}else {
 				map[*prey][*prex]=' ';
 				PutChar(*prex*8,*prey*16,' ',Black,Black);
+				}
+					
+				
     // Update position
 				blinkly.prevx=*prex;
 				blinkly.prevy=*prey;
