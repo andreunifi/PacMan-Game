@@ -107,7 +107,7 @@ int main(void)
 	blinkly.prevy=9;
 	blinkly.remainingtime=10;
 	blinkly.respawntime=3;
-	player.lives=3;
+	player.lives=1;
 	player.x=1;
 	player.y=1;
 	
@@ -136,7 +136,7 @@ int main(void)
 	GUI_Text(2*8,19*16,(uint8_t *)"0",White,Black);
 	
 	GUI_Text(25*8,18*16,(uint8_t *)"Lives",White,Black);
-	GUI_Text(27*8,19*16,(uint8_t *)"PPP",Yellow,Black);
+	GUI_Text(27*8,19*16,(uint8_t *)"P",Yellow,Black);
 	
 	//initializeMap();
 	joystick_init();

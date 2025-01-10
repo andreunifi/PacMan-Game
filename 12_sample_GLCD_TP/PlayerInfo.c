@@ -12,7 +12,14 @@ void drawScore(){
 
 };
 void drawLives(){
+		if(lives == 1)
+			GUI_Text(27*8,19*16,(uint8_t *)"P",Yellow,Black);
 		
+		if (lives == 2)
+			GUI_Text(27*8,19*16,(uint8_t *)"PP",Yellow,Black);
+		
+		if (lives == 3)
+			GUI_Text(27*8,19*16,(uint8_t *)"PPP",Yellow,Black);
 };
 
 
@@ -21,7 +28,7 @@ void drawLives(){
 
 int move(int* prex, int* prey, int dir, int width, int height, const int* walltiles, volatile char map[height][width]) {
     int movx = 0, movy = 0;
-
+		int lastscore = score;
     // Determine the movement direction
     switch (dir) {
         case 0: // Up
@@ -65,14 +72,24 @@ int move(int* prex, int* prey, int dir, int width, int height, const int* wallti
 		if(cointiles[index] == 1){
 			score+=10;
 			cointiles[index] = 0;
-
+			sprintf(scorechar,
+               "%d", score);
 			drawScore();
 			count--;
+			
 			if(count==0 && power == 0){
 			disable_timer(0);
 			disable_timer(1);
+			disable_timer(2);	
+			disable_timer(3);	
 			GUI_Text((11 *8),(MAP_HEIGHT/2)*16,(uint8_t *)"You win!",Green,White);
 			}
+			
+			if((int)(score / 1000 ) - (int)(lastscore / 1000) == 1)
+				if(lives <3)
+					lives++;
+				
+			
 		}
 		
 		if(newx==0 && newy==9){
@@ -108,10 +125,14 @@ int move(int* prex, int* prey, int dir, int width, int height, const int* wallti
 			if(poweruptiles[index] == 1){
 			score+=50;
 			poweruptiles[index] = 0;
-			
+			sprintf(scorechar,
+               "%d", score);
 			drawScore();
 			blinkly.status=2;
 			blinkly.remainingtime=10;
+			if((int)(score / 1000 ) - (int)(lastscore / 1000) == 1)
+				if(lives <3)
+					lives++;	
 			
 		}
 		

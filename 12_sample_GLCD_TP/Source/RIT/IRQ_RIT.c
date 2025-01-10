@@ -181,7 +181,7 @@ void RIT_IRQHandler (void)
 
 	
 	
-	
+	reset_RIT();
 
   LPC_RIT->RICTRL |= 0x1;	/* clear interrupt flag */
 	
