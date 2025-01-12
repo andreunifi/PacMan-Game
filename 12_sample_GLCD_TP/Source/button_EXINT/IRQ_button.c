@@ -12,7 +12,7 @@ void EINT0_IRQHandler (void)	  	/* INT0														 */
 {		
 	if(pause){
 		for(int i=0;i<5;i++){
-	PutChar((11+i)*8,(MAP_HEIGHT/2)*16, map[MAP_HEIGHT/2][11+i],Yellow,Black);
+	PutChar((13+i)*8,(MAP_HEIGHT/2)*16, map[MAP_HEIGHT/2][13+i],Yellow,Black);
 		
 	}
 	enable_timer(0);

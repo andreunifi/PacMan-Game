@@ -163,7 +163,7 @@ int main(void)
 	init_timer(3,0x225510); //60 seconds timer
 	//enable_timer(3);
 	BUTTON_init();
-	GUI_Text((11 *8),(MAP_HEIGHT/2)*16,(uint8_t *)"Pause",Yellow,White);
+	GUI_Text((13 *8),(MAP_HEIGHT/2)*16,(uint8_t *)"Pause",Yellow,White);
 	
 	
 	
