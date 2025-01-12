@@ -99,7 +99,7 @@ int main(void)
 {
   SystemInit();  												/* System Initialization (i.e., PLL)  */
 	CAN_Init();
-	
+	/*
 	blinkly.x=2;
 	blinkly.y=9;
 	blinkly.status=1;
@@ -107,6 +107,7 @@ int main(void)
 	blinkly.prevy=9;
 	blinkly.remainingtime=10;
 	blinkly.respawntime=3;
+	*/
 	player.lives=1;
 	player.x=1;
 	player.y=1;
@@ -138,7 +139,7 @@ int main(void)
 	GUI_Text(25*8,18*16,(uint8_t *)"Lives",White,Black);
 	GUI_Text(27*8,19*16,(uint8_t *)"P",Yellow,Black);
 	
-	//initializeMap();
+	
 	joystick_init();
 	
 	init_RIT(0x004C4B40);		//old value, 50 ms
@@ -147,11 +148,9 @@ int main(void)
 	enable_RIT();													/* RIT enabled												*/
 	
 		
-	//GUI_Text(0, 0, (uint8_t *) " touch here : 1 sec to clear  ", Red, White);
 	
-	//LCD_DrawLine(0, 0, 200, 200, White);
-	//init_timer(0, 0x1312D0 ); 						/* 50ms * 25MHz = 1.25*10^6 = 0x1312D0 */
-	init_timer(0, 0x225510 ); 						  /* 1ms * 25MHz = 25*10^3 = 0x6108 */
+	
+	init_timer(0, 0x225510 ); 						  /* 0.09ms * 25MHz = 25*10^3 = 0x6108 Main game time*/
 	
 	
 	init_timer(1,0x17D7840); //60 seconds timer
@@ -160,7 +159,7 @@ int main(void)
 	//init_timer(2,0x225510); //60 seconds timer
 	
 	
-	init_timer(3,0x225510); //60 seconds timer
+	init_timer(3,0x225510); //Blinky timer
 	//enable_timer(3);
 	BUTTON_init();
 	GUI_Text((13 *8),(MAP_HEIGHT/2)*16,(uint8_t *)"Pause",Yellow,White);

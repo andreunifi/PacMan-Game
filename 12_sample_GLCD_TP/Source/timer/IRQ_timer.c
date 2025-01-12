@@ -109,6 +109,7 @@ void TIMER0_IRQHandler (void) //this is the main game tick()
 	
 	
   LPC_TIM0->IR = 1;			/* clear interrupt flag */
+	
   return;
 }
 

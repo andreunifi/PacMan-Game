@@ -140,42 +140,6 @@ void RIT_IRQHandler (void)
 	
 
 	
-	//move(&player.x, &player.y, dir, MAP_WIDTH,MAP_HEIGHT, wallstiles,map);
-	
-	
-	
-		
-
-/*	else{
-			if(down==1)
-				down++;
-	} */
-	
-	
-//	if(ext1==1){
-//		
-//		
-//		if((LPC_GPIO2->FIOPIN & (1<<11)) == 0 ){	/* KEY1 pressed */
-//			if(isPaused){
-//			GUI_Text((13 *8),(MAP_HEIGHT/2)*16,(uint8_t *)"Pause",Blue,White);
-//			disable_timer(0);
-//			disable_timer(1);	
-//			isPaused=0;
-//			}else{
-//			GUI_Text((13 *8),(MAP_HEIGHT/2)*16,(uint8_t *)"#####",Blue,Black);
-//			enable_timer(0);	
-//			enable_timer(1);		
-//			isPaused=1;
-//			}
-//			ext1=0;
-//		}
-//		}
-//		else {	
-//			if((LPC_GPIO2->FIOPIN & (1<<11)) == 0 )
-//				ext1++;
-//		}
-//	
-//	
 	
 
 
