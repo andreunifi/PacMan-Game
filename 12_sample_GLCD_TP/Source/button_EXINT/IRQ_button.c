@@ -25,7 +25,7 @@ void EINT0_IRQHandler (void)	  	/* INT0														 */
 	disable_timer(2);
 	disable_timer(3);
 	pause=1;
-		
+	GUI_Text((13 *8),(MAP_HEIGHT/2)*16,(uint8_t *)"Pause",Yellow,White);	
 	}
 	LPC_SC->EXTINT &= (1 << 0);     /* clear pending interrupt         */
 }
