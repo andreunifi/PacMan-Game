@@ -58,7 +58,7 @@ void initialize(int height, int width,
         }
     }
 		map[1][1]='P';
-		//map[9][2]='O';
+		map[12][14]='O';
 		count=240;
 }
 

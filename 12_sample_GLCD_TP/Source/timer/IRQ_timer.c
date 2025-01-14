@@ -170,13 +170,13 @@ void TIMER1_IRQHandler (void) //used to generate the countdown timer. #todo: can
 		if(blinkly.respawntime > 0){
 		blinkly.respawntime--;
 		}else{
-		blinkly.prevx=2;
-		blinkly.prevy=10;
-		blinkly.x=2;
-		blinkly.y=10;
+		blinkly.prevx=14;
+		blinkly.prevy=12;
+		blinkly.x=14;
+		blinkly.y=12;
 				
 		map[10][2]='O';
-		PutChar(2*8,10*16,'O',Red,Black);	
+		PutChar(14*8,12*16,'O',Red,Black);	
 			
 		blinkly.status=1;
 		blinkly.respawntime=3;	
@@ -222,8 +222,6 @@ void TIMER3_IRQHandler (void){
     counter20ns += 10;
 		
 	
-		 int x=rand() % (30 + 1);
-		 int y= rand() % (18 + 1);
 		
 		
 	
@@ -231,23 +229,23 @@ void TIMER3_IRQHandler (void){
     // Difficulty logic based on 'time'
     if (time > 45) {
         // Execute action for 100 ns interval
-        if (counter100ns >= 30000) {
+        if (counter100ns >= 3000000) {
             // Action for difficulty 1
            moveGhost(&blinkly.prevx,&blinkly.prevy,MAP_WIDTH,MAP_HEIGHT,wallstiles,map,blinkly.status,player.x,player.y);
 						//PutChar(x*8,y*16,'M',Green,Black);
             counter100ns = 0; // Reset counter
         }
-    } else if (time > 30) {
+    } else if (time >= 30 && time < 45) {
         // Execute action for 50 ns interval
-        if (counter50ns >= 15000) {
+        if (counter50ns >= 1500000) {
             // Action for difficulty 2
             moveGhost(&blinkly.prevx,&blinkly.prevy,MAP_WIDTH,MAP_HEIGHT,wallstiles,map,blinkly.status,player.x,player.y);
 						//PutChar(x*8,y*16,'K',Green,Black);
             counter50ns = 0; // Reset counter
         }
-    } else if (time < 30 ) {
+    } else if (time < 30  ) {
         // Execute action for 20 ns interval
-        if (counter20ns >= 10000) {
+        if (counter20ns >= 1000000) {
             // Action for difficulty 3
             moveGhost(&blinkly.prevx,&blinkly.prevy,MAP_WIDTH,MAP_HEIGHT,wallstiles,map,blinkly.status,player.x,player.y);
 						//PutChar(x*8,y*16,'D',Green,Black);
@@ -274,11 +272,11 @@ void TIMER3_IRQHandler (void){
 
 			map[blinkly.y][blinkly.x]=' ';
 
-			blinkly.prevx=2;
-			blinkly.prevy=9;
-			blinkly.x=2;
-			blinkly.y=9;
-			map[9][2]='O';
+			blinkly.prevx=14;
+			blinkly.prevy=12;
+			blinkly.x=14;
+			blinkly.y=12;
+			map[14][12]='O';
 			PutChar(blinkly.x*8,blinkly.y*16,'O',Red,Black);			
 
 			
@@ -288,6 +286,9 @@ void TIMER3_IRQHandler (void){
 			player.lives--;
 			}else{
 				disable_timer(0);
+				disable_timer(1);
+				disable_timer(2);
+				disable_timer(3);
 				GUI_Text((11 *8),(MAP_HEIGHT/2)*16,(uint8_t *)"Game Over!",Red,White);
 			}
 			

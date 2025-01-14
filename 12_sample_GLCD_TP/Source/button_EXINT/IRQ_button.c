@@ -18,6 +18,9 @@ void EINT0_IRQHandler (void)	  	/* INT0														 */
 	enable_timer(0);
 	enable_timer(1);
 	enable_timer(2);
+	init_timer(3,/*0x07A120*/ 0x17D7840); //Blinky timer doesn't actually work. Why?
+
+	enable_timer(3);
 	pause=0;
 	}else{
 	disable_timer(0);

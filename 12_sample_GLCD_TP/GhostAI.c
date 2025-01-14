@@ -55,8 +55,20 @@ int moveGhost(int *prex, int *prey, int width, int height, const int* walltiles,
         aStar(*prex, *prey, blinkly.x + (blinkly.x - playerX), blinkly.y + (blinkly.y - playerY), width, height, walltiles, &nextX, &nextY);
 				
 			
+			if(cointiles[(*prey)*MAP_WIDTH + (*prex)] == 1){
+					
+					map[*prey][*prex]='*';
+					PutChar(*prex*8,*prey*16,'*',Yellow,Black);
+				}else if(poweruptiles[(*prey)*MAP_WIDTH + (*prex)] == 1){
+					
+				map[*prey][*prex]='X';
+				PutChar(*prex*8,*prey*16,'X',Red,Black);
+				}else {
 				map[*prey][*prex]=' ';
 				PutChar(*prex*8,*prey*16,' ',Black,Black);
+				}
+					
+				
     // Update position
 				blinkly.prevx=*prex;
 				blinkly.prevy=*prey;
@@ -67,12 +79,11 @@ int moveGhost(int *prex, int *prey, int width, int height, const int* walltiles,
 				PutChar(nextX*8,nextY*16,'O',Blue,Black);
         blinkly.x=nextX;
 				blinkly.y=nextY;
-			
-			
-			
-			
-        return 0;
+        return 0; // Move successful
     }
+			
+			
+			
 
     return -1; // Invalid mode
 }

@@ -99,15 +99,15 @@ int main(void)
 {
   SystemInit();  												/* System Initialization (i.e., PLL)  */
 	CAN_Init();
-	/*
-	blinkly.x=2;
-	blinkly.y=9;
+	
+	blinkly.x=14;
+	blinkly.y=12;
 	blinkly.status=1;
-	blinkly.prevx=2;
-	blinkly.prevy=9;
+	blinkly.prevx=14;
+	blinkly.prevy=12;
 	blinkly.remainingtime=10;
 	blinkly.respawntime=3;
-	*/
+	
 	player.lives=1;
 	player.x=1;
 	player.y=1;
@@ -134,7 +134,7 @@ int main(void)
 	
 	
 	GUI_Text(14*8,18*16,(uint8_t *)"Time",White,Black);
-	//GUI_Text(2*8,19*16,(uint8_t *)"0",White,Black);
+	//GUI_Text(14*8,12*16,(uint8_t *)"0",White,Black);
 	
 	GUI_Text(25*8,18*16,(uint8_t *)"Lives",White,Black);
 	GUI_Text(27*8,19*16,(uint8_t *)"P",Yellow,Black);
@@ -158,8 +158,9 @@ int main(void)
 	
 	//init_timer(2,0x225510); //60 seconds timer
 	
+	reset_timer(3);
+	init_timer(3,/*0x07A120*/ 0x17D7840); //Blinky timer doesn't actually work. Why?
 	
-	init_timer(3,0x225510); //Blinky timer
 	//enable_timer(3);
 	BUTTON_init();
 	GUI_Text((13 *8),(MAP_HEIGHT/2)*16,(uint8_t *)"Pause",Yellow,White);

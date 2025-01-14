@@ -152,7 +152,7 @@ int move(int* prex, int* prey, int dir, int width, int height, const int* wallti
 		map[newy][newx]='p';
 		PutChar(newx*8,newy*16,'p',Yellow,Black);
 		
-		/*
+		
 		if(newx == blinkly.x && newy == blinkly.y && blinkly.status==2){
 			blinkly.status=3;
 			blinkly.remainingtime=10;
@@ -164,7 +164,7 @@ int move(int* prex, int* prey, int dir, int width, int height, const int* wallti
 
 				
 		}
-		*/
+		
 		
     return 1; // Move successful
 }
