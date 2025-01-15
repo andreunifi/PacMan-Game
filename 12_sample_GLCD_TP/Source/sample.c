@@ -31,6 +31,7 @@
 #include "CAN/CAN.h"
 #include "GameData/GhostAI.h"
 #include "button.h"
+#include "adc/adc.h"
 
 #define MAP_WIDTH 30    // 240 pixels / 8px per character
 #define MAP_HEIGHT 18
@@ -163,6 +164,13 @@ int main(void)
 	
 	//enable_timer(3);
 	BUTTON_init();
+	
+	ADC_init();
+	
+	LPC_PINCON->PINSEL1 |= (1<<21);
+	LPC_PINCON->PINSEL1 &= ~(1<<20);
+	LPC_GPIO0->FIODIR |= (1<<26);
+	
 	GUI_Text((13 *8),(MAP_HEIGHT/2)*16,(uint8_t *)"Pause",Yellow,White);
 	
 	

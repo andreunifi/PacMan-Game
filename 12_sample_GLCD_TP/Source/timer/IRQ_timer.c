@@ -18,7 +18,7 @@
 #include <stdio.h> /*for sprintf*/
 #include "GameData/PlayerInfo.h"
 #include "CAN/CAN.h"
-
+#include "adc/adc.h"
 #include "GameData/GhostAI.h"
 
 #define MAP_WIDTH 30    // 240 pixels / 8px per character
@@ -204,7 +204,16 @@ void TIMER1_IRQHandler (void) //used to generate the countdown timer. #todo: can
 
 void TIMER2_IRQHandler (void)
 {
-	
+	static int sineticks=0;
+	/* DAC management */	
+	static int currentValue; 
+	currentValue = SinTable[sineticks];
+	currentValue -= 410;
+	currentValue /= 1;
+	currentValue += 410;
+	LPC_DAC->DACR = currentValue <<6;
+	sineticks++;
+	if(sineticks==45) sineticks=0;
 	
   LPC_TIM2->IR = 1;			/* clear interrupt flag */
   return;

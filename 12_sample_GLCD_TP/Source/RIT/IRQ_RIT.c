@@ -12,7 +12,7 @@
 #include "../led/led.h"
 #include "GameData/PlayerInfo.h"
 #include "timer/timer.h"
-
+#include "music/music.h"
 /******************************************************************************
 ** Function name:		RIT_IRQHandler
 **
@@ -34,6 +34,80 @@ volatile int down=0;
 extern int isPaused;
 
 int dir=-1;
+
+
+//defines for music
+
+#define RIT_SEMIMINIMA 8
+#define RIT_MINIMA 16
+#define RIT_INTERA 32
+
+#define UPTICKS 1
+
+
+//SHORTENING UNDERTALE: TOO MANY REPETITIONS
+NOTE song[] = 
+{
+	// 1
+	{d3, time_semicroma},
+	{d3, time_semicroma},
+	{d4, time_croma},
+	{a3, time_croma},
+	{pause, time_semicroma},
+	{a3b, time_semicroma},
+	{pause, time_semicroma},
+	{g3, time_croma},
+	{f3, time_semicroma*2},
+	{d3, time_semicroma},
+	{f3, time_semicroma},
+	{g3, time_semicroma},
+	// 2
+	{c3, time_semicroma},
+	{c3, time_semicroma},
+	{d4, time_croma},
+	{a3, time_croma},
+	{pause, time_semicroma},
+	{a3b, time_semicroma},
+	{pause, time_semicroma},
+	{g3, time_croma},
+	{f3, time_semicroma*2},
+	{d3, time_semicroma},
+	{f3, time_semicroma},
+	{g3, time_semicroma},
+	// 3
+	{c3b, time_semicroma},
+	{c3b, time_semicroma},
+	{d4, time_croma},
+	{a3, time_croma},
+	{pause, time_semicroma},
+	{a3b, time_semicroma},
+	{pause, time_semicroma},
+	{g3, time_croma},
+	{f3, time_semicroma*2},
+	{d3, time_semicroma},
+	{f3, time_semicroma},
+	{g3, time_semicroma},
+	// 4
+	{a2b, time_semicroma},
+	{a2b, time_semicroma},
+	{d4, time_croma},
+	{a3, time_croma},
+	{pause, time_semicroma},
+	{a3b, time_semicroma},
+	{pause, time_semicroma},
+	{g3, time_croma},
+	{f3, time_semicroma*2},
+	{d3, time_semicroma},
+	{f3, time_semicroma},
+	{g3, time_semicroma},
+	// 5
+	
+};
+
+
+
+
+
 void RIT_IRQHandler (void)
 {	
 	static int ext1=0;
@@ -139,6 +213,20 @@ void RIT_IRQHandler (void)
 	}
 	
 
+	//Code for music:
+	
+	
+	static int currentNote = 0;
+	static int ticks = 0;
+	if(!isNotePlaying())
+	{
+		++ticks;
+		if(ticks == UPTICKS)
+		{
+			ticks = 0;
+			playNote(song[currentNote++]);
+		}
+	}
 	
 	
 
