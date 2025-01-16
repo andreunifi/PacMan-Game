@@ -153,11 +153,20 @@ int main(void)
 	GUI_Text(0,18*16,(uint8_t *)"Score",White,Black);
 	
 	
-	GUI_Text(14*8,18*16,(uint8_t *)"Time",White,Black);
+	GUI_Text(13*8,18*16,(uint8_t *)"Time",White,Black);
 	//GUI_Text(14*8,12*16,(uint8_t *)"0",White,Black);
 	
 	GUI_Text(25*8,18*16,(uint8_t *)"Lives",White,Black);
-	GUI_Text(27*8,19*16,(uint8_t *)"P",Yellow,Black);
+	drawPacMan(27*8,19*16);
+	//GUI_Text(27*8,19*16,(uint8_t *)"P",Yellow,Black);
+	
+	GUI_Text(0,15*16,(uint8_t *)"Score_Can",White,Black);
+	
+	
+	GUI_Text(13*8,15*16,(uint8_t *)"Time_Can",White,Black);
+	//GUI_Text(14*8,12*16,(uint8_t *)"0",White,Black);
+	
+	GUI_Text(25*8,15*16,(uint8_t *)"Lives_Can",White,Black);
 	
 	
 	joystick_init();
@@ -179,7 +188,7 @@ int main(void)
 	//init_timer(2,0x225510); //60 seconds timer
 	
 	reset_timer(3);
-	init_timer(3,/*0x07A120*/ 0x17D7840); //Blinky timer doesn't actually work. Why?
+	init_timer(3,/*0x07A120*/ 0x225510 ); //Blinky timer doesn't actually work. Why?
 	
 	//enable_timer(3);
 	BUTTON_init();

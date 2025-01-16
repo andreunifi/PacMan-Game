@@ -25,14 +25,17 @@ int moveGhost(int *prex, int *prey, int width, int height, const int* walltiles,
 			  if(cointiles[(*prey)*MAP_WIDTH + (*prex)] == 1){
 					
 					map[*prey][*prex]='*';
-					PutChar(*prex*8,*prey*16,'*',Yellow,Black);
+					drawNormalPill(*prex,*prey);
+					//PutChar(*prex*8,*prey*16,'*',Yellow,Black);
 				}else if(poweruptiles[(*prey)*MAP_WIDTH + (*prex)] == 1){
 					
 				map[*prey][*prex]='X';
-				PutChar(*prex*8,*prey*16,'X',Red,Black);
+				drawBigPill(*prex,*prey);	
+				//PutChar(*prex*8,*prey*16,'X',Red,Black);
 				}else {
 				map[*prey][*prex]=' ';
-				PutChar(*prex*8,*prey*16,' ',Black,Black);
+				emptytile(*prex,*prey);	
+				//PutChar(*prex*8,*prey*16,' ',Black,Black);
 				}
 					
 				
@@ -43,7 +46,8 @@ int moveGhost(int *prex, int *prey, int width, int height, const int* walltiles,
 				*prey=nextY;
 				
 				map[nextY][nextX]='0';
-				PutChar(nextX*8,nextY*16,'O',Red,Black);
+				drawGhost(nextX,nextY);
+				//PutChar(nextX*8,nextY*16,'O',Red,Black);
         blinkly.x=nextX;
 				blinkly.y=nextY;
         return 1; // Move successful
@@ -58,14 +62,17 @@ int moveGhost(int *prex, int *prey, int width, int height, const int* walltiles,
 			if(cointiles[(*prey)*MAP_WIDTH + (*prex)] == 1){
 					
 					map[*prey][*prex]='*';
-					PutChar(*prex*8,*prey*16,'*',Yellow,Black);
+					drawNormalPill(*prex,*prey);
+					//PutChar(*prex*8,*prey*16,'*',Yellow,Black);
 				}else if(poweruptiles[(*prey)*MAP_WIDTH + (*prex)] == 1){
 					
 				map[*prey][*prex]='X';
-				PutChar(*prex*8,*prey*16,'X',Red,Black);
+				drawBigPill(*prex,*prey);
+				//PutChar(*prex*8,*prey*16,'X',Red,Black);
 				}else {
 				map[*prey][*prex]=' ';
-				PutChar(*prex*8,*prey*16,' ',Black,Black);
+					emptytile(*prex,*prey);	
+				//PutChar(*prex*8,*prey*16,' ',Black,Black);
 				}
 					
 				
@@ -76,7 +83,8 @@ int moveGhost(int *prex, int *prey, int width, int height, const int* walltiles,
 				*prey=nextY;
 				
 				map[nextY][nextX]='0';
-				PutChar(nextX*8,nextY*16,'O',Blue,Black);
+				drawGhost(nextX,nextY);
+				//PutChar(nextX*8,nextY*16,'O',Blue,Black);
         blinkly.x=nextX;
 				blinkly.y=nextY;
         return 0; // Move successful

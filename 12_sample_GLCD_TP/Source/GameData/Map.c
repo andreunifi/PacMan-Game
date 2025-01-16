@@ -6,7 +6,7 @@
 
 
 
-int count=260;
+int count=240;
 int emptysize=0;
 
 void initialize(int height, int width, 
@@ -33,12 +33,12 @@ void initialize(int height, int width,
 								emptysize++;
 								map[y][x]=' ';
 								if(count > 0 && !(y == 9 && (x == 0 || x == 29)) ){
-									 //int value = rand() % (1 + 1);
-									//if(value){
+									int value = rand() % (2 + 1);
+									if(value){
 									map[y][x]='*';
 									count--;
 									
-									//}
+									}
 									
 								}
 									

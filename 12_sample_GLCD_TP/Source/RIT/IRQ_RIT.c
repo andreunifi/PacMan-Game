@@ -25,7 +25,7 @@
 
 
 #define MAP_WIDTH 30    // 240 pixels / 8px per character
-#define MAP_HEIGHT 18
+#define MAP_HEIGHT 30
 
 
 //TODO: fix if joystick has chosen a non regular wat SW,NW;SE;NE

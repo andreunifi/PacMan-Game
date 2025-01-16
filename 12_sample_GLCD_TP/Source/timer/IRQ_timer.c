@@ -22,7 +22,7 @@
 #include "GameData/GhostAI.h"
 
 #define MAP_WIDTH 30    // 240 pixels / 8px per character
-#define MAP_HEIGHT 18
+#define MAP_HEIGHT 30
 
 /******************************************************************************
 ** Function name:		Timer0_IRQHandler
@@ -82,11 +82,13 @@ void generatePower(){
 					cointiles[index]=0;
 					poweruptiles[index]=1;
 					map[y][x]='X';
-					PutChar(x*8,y*16,'X',Red,Black);
+					drawBigPill(x,y);
+					//PutChar(x*8,y*16,'X',Red,Black);
 				}else{
 				poweruptiles[index]=1;
 				map[y][x]='X';
-				PutChar(x*8,y*16,'X',Red,Black);
+				drawBigPill(x,y);
+				//PutChar(x*8,y*16,'X',Red,Black);
 				}
 				power--;
 			}
@@ -176,7 +178,8 @@ void TIMER1_IRQHandler (void) //used to generate the countdown timer. #todo: can
 		blinkly.y=12;
 				
 		map[10][2]='O';
-		PutChar(14*8,12*16,'O',Red,Black);	
+		drawGhost(14,12);	
+		//PutChar(14*8,12*16,'O',Red,Black);	
 			
 		blinkly.status=1;
 		blinkly.respawntime=3;	
@@ -238,7 +241,7 @@ void TIMER3_IRQHandler (void){
     // Difficulty logic based on 'time'
     if (time > 45) {
         // Execute action for 100 ns interval
-        if (counter100ns >= 3000000) {
+        if (counter100ns >= 30000) {
             // Action for difficulty 1
            moveGhost(&blinkly.prevx,&blinkly.prevy,MAP_WIDTH,MAP_HEIGHT,wallstiles,map,blinkly.status,player.x,player.y);
 						//PutChar(x*8,y*16,'M',Green,Black);
@@ -246,7 +249,7 @@ void TIMER3_IRQHandler (void){
         }
     } else if (time >= 30 && time < 45) {
         // Execute action for 50 ns interval
-        if (counter50ns >= 1500000) {
+        if (counter50ns >= 15000) {
             // Action for difficulty 2
             moveGhost(&blinkly.prevx,&blinkly.prevy,MAP_WIDTH,MAP_HEIGHT,wallstiles,map,blinkly.status,player.x,player.y);
 						//PutChar(x*8,y*16,'K',Green,Black);
@@ -254,7 +257,7 @@ void TIMER3_IRQHandler (void){
         }
     } else if (time < 30  ) {
         // Execute action for 20 ns interval
-        if (counter20ns >= 1000000) {
+        if (counter20ns >= 10000) {
             // Action for difficulty 3
             moveGhost(&blinkly.prevx,&blinkly.prevy,MAP_WIDTH,MAP_HEIGHT,wallstiles,map,blinkly.status,player.x,player.y);
 						//PutChar(x*8,y*16,'D',Green,Black);
@@ -265,13 +268,14 @@ void TIMER3_IRQHandler (void){
 		if(blinkly.x == player.x && blinkly.y == player.y && blinkly.status==1){
 			if(player.lives>0){
 			map[player.y][player.x]=' ';
-			
-			PutChar(player.x*8,player.y*16,' ',Black,Black);	
+			emptytile(player.x,player.y);
+			//PutChar(player.x*8,player.y*16,' ',Black,Black);	
 				
 			player.x=1;
 			player.y=1;				
 			map[1][1]='P';
-			PutChar(player.x*8,player.y*16,'p',Yellow,Black);
+			drawPacMan(player.x,player.y);
+			//PutChar(player.x*8,player.y*16,'p',Yellow,Black);
     // Update position
 
 
@@ -286,7 +290,8 @@ void TIMER3_IRQHandler (void){
 			blinkly.x=14;
 			blinkly.y=12;
 			map[14][12]='O';
-			PutChar(blinkly.x*8,blinkly.y*16,'O',Red,Black);			
+			drawGhost(blinkly.x,blinkly.y);
+			//PutChar(blinkly.x*8,blinkly.y*16,'O',Red,Black);			
 
 			
 			

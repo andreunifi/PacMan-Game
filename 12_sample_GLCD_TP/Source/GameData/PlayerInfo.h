@@ -12,7 +12,7 @@ int move(int *prex, int *prey, int dir, int width, int height, const int* wallti
 
 
 #define MAP_WIDTH 30    // 240 pixels / 8px per character
-#define MAP_HEIGHT 18
+#define MAP_HEIGHT 30
 extern int score;
 
 
