@@ -1,7 +1,7 @@
 #ifndef MUSIC_H
 #define MUSIC_H
 
-
+#include "timer.h"
 //Default: 1.65
 #define SPEEDUP 1.6
 

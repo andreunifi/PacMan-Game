@@ -2,7 +2,7 @@
 #define MAP_H
 #include <stdlib.h>
 #define MAP_WIDTH 30    // 240 pixels / 8px per character
-#define MAP_HEIGHT 18
+#define MAP_HEIGHT 30
 volatile int emptytiles[MAP_HEIGHT*MAP_WIDTH];
 volatile int wallstiles[MAP_HEIGHT*MAP_WIDTH];
 volatile int cointiles[MAP_HEIGHT*MAP_WIDTH];

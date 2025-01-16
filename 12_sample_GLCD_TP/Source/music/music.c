@@ -17,5 +17,5 @@ void playNote(NOTE note)
 
 BOOL isNotePlaying(void)
 {
-	return ((LPC_TIM0->TCR != 0) || (LPC_TIM1->TCR != 0));
+	return 1; /*((LPC_TIM0->TCR != 0) || (LPC_TIM1->TCR != 0));*/
 }

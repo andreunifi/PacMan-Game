@@ -34,13 +34,24 @@
 #include "adc/adc.h"
 
 #define MAP_WIDTH 30    // 240 pixels / 8px per character
-#define MAP_HEIGHT 18
+#define MAP_HEIGHT 30
 
 // Define the characters for the map
 extern volatile char map[MAP_HEIGHT][MAP_WIDTH];
 
 extern volatile int emptytiles[MAP_HEIGHT*MAP_WIDTH];
 extern volatile int wallstiles[MAP_HEIGHT*MAP_WIDTH];
+
+PlayerInfo player;
+GhostInfo blinkly;
+volatile int pause=1;
+uint16_t screenwidht=240;
+uint16_t screenheight=320;
+
+
+
+
+
 
 extern void initialize(int height, int width, 
                 int emptytiles[height * width], 
@@ -49,9 +60,7 @@ extern void initialize(int height, int width,
                 int poweruptiles[height * width],
                 char map[height][width]);
 
-PlayerInfo player;
-GhostInfo blinkly;
-volatile int pause=1;
+
 void initializeMap(){
 for (int y = 0; y < MAP_HEIGHT; y++) {
     for (int x = 0; x < MAP_WIDTH; x++) {
@@ -62,23 +71,35 @@ for (int y = 0; y < MAP_HEIGHT; y++) {
       uint16_t color;
       if (tile == '#') {
         color = Blue ;  // Wall
+				for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                LCD_SetPoint(x * 8 + i, y * 8 + j, color);
+            }
+        }
       } else if (tile == ' ') {
           // Path
 				tile=' ';
       } else if (tile == 'P') {
-        color = Yellow;  // Pac-Man
+        drawPacMan(x,y);
 				player.x=x;
 				player.y=y;
       } else if(tile == '*'){
-				
+				drawNormalPill(x,y);
         color = Yellow;  // Default to path color
 				
       }else if(tile == 'O'){
 			color = Red;
+			drawGhost(x,y);
 			}else if(tile == 'x'){
 			tile = ' ';
+			color= Black;	
 			}
-			PutChar( x*8, y*16, tile, color, Black);
+			
+			
+			
+			
+			
+			
 		}
 		}
 }
@@ -87,8 +108,6 @@ for (int y = 0; y < MAP_HEIGHT; y++) {
 
 
 
-uint16_t screenwidht=240;
-uint16_t screenheight=320;
 
 
 #ifdef SIMULATOR

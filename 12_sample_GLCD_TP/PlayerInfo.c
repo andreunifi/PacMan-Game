@@ -97,7 +97,8 @@ int move(int* prex, int* prey, int dir, int width, int height, const int* wallti
 		
 		if(newx==0 && newy==9){
 		map[*prey][*prex]=' ';
-		PutChar(*prex*8,*prey*16,' ',Black,Black);
+		emptytile(*prex,*prey);	
+		//PutChar(*prex*8,*prey*16,' ',Black,Black);
 		
 			
 		
@@ -105,7 +106,8 @@ int move(int* prex, int* prey, int dir, int width, int height, const int* wallti
 		*prex = newx;
     *prey = newy;
 		map[newy][newx]='p';
-		PutChar(newx*8,newy*16,'p',Yellow,Black);
+		drawPacMan(newx,newy);	
+		//PutChar(newx*8,newy*16,'p',Yellow,Black);
 			return 1;
 		}
 		
@@ -113,7 +115,8 @@ int move(int* prex, int* prey, int dir, int width, int height, const int* wallti
 		
 		if(newx==29 && newy==9){
 		map[*prey][*prex]=' ';
-		PutChar(*prex*8,*prey*16,' ',Black,Black);
+		emptytile(*prex,*prey);	
+		//PutChar(*prex*8,*prey*16,' ',Black,Black);
 		
 			
 		
@@ -121,7 +124,8 @@ int move(int* prex, int* prey, int dir, int width, int height, const int* wallti
 		*prex = newx;
     *prey = newy;
 		map[newy][newx]='p';
-		PutChar(newx*8,newy*16,'p',Yellow,Black);
+		drawPacMan(newx,newy);		
+		//PutChar(newx*8,newy*16,'p',Yellow,Black);
 			return 1;
 		}
 		
@@ -145,12 +149,15 @@ int move(int* prex, int* prey, int dir, int width, int height, const int* wallti
 		
 		
 		map[*prey][*prex]=' ';
-		PutChar(*prex*8,*prey*16,' ',Black,Black);
+		
+		emptytile(*prex,*prey);	
+		//PutChar(*prex*8,*prey*16,' ',Black,Black);
     // Update position
     *prex = newx;
     *prey = newy;
 		map[newy][newx]='p';
-		PutChar(newx*8,newy*16,'p',Yellow,Black);
+		drawPacMan(newx,newy);	
+		//PutChar(newx*8,newy*16,'p',Yellow,Black);
 		
 		
 		if(newx == blinkly.x && newy == blinkly.y && blinkly.status==2){

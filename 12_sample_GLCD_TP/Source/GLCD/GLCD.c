@@ -668,7 +668,49 @@ void GUI_Text(uint16_t Xpos, uint16_t Ypos, uint8_t *str,uint16_t Color, uint16_
     while ( *str != 0 );
 }
 
+// Function to draw Pac-Man
+void drawPacMan(uint16_t Xpos, uint16_t Ypos) {
+    for (int y = 0; y < 8; y++) {
+        for (int x = 0; x < 8; x++) {
+            LCD_SetPoint(Xpos*8 + x, Ypos*8 + y, pacman[y][x]);
+        }
+    }
+}
 
+// Function to draw Blinky (Red Ghost)
+void drawGhost(uint16_t Xpos, uint16_t Ypos) {
+    for (int y = 0; y < 8; y++) {
+        for (int x = 0; x < 8; x++) {
+            LCD_SetPoint(Xpos*8 + x, Ypos*8 + y, blinky[y][x]);
+        }
+    }
+}
+
+// Function to draw a Normal Pill
+void drawNormalPill(uint16_t Xpos, uint16_t Ypos) {
+    for (int y = 0; y < 8; y++) {
+        for (int x = 0; x < 8; x++) {
+            LCD_SetPoint(Xpos*8 + x, Ypos*8 + y, normal[y][x]);
+        }
+    }
+}
+
+// Function to draw a Big Pill
+void drawBigPill(uint16_t Xpos, uint16_t Ypos) {
+    for (int y = 0; y < 8; y++) {
+        for (int x = 0; x < 8; x++) {
+            LCD_SetPoint(Xpos*8 + x, Ypos*8 + y, powerpill[y][x]);
+        }
+    }
+}
+
+void emptytile(uint16_t Xpos, uint16_t Ypos) {
+    for (int y = 0; y < 8; y++) {
+        for (int x = 0; x < 8; x++) {
+            LCD_SetPoint(Xpos*8 + x, Ypos*8 + y, Black);
+        }
+			}
+}  
 
 /*********************************************************************************************************
       END FILE

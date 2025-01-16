@@ -95,6 +95,55 @@ void LCD_DrawLine( uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1 , uint16_t
 void PutChar( uint16_t Xpos, uint16_t Ypos, uint8_t ASCI, uint16_t charColor, uint16_t bkColor );
 void GUI_Text(uint16_t Xpos, uint16_t Ypos, uint8_t *str,uint16_t Color, uint16_t bkColor);
 
+static uint16_t pacman[8][8] = {
+    {Black, Black, Yellow, Yellow, Yellow, Yellow, Black, Black},
+    {Black, Yellow, Yellow, Yellow, Yellow, Yellow, Yellow, Black},
+    {Yellow, Yellow, Yellow, Yellow, Yellow, Yellow, Yellow, Yellow},
+    {Yellow, Yellow, Yellow, Yellow, Yellow, Black, Black, Black},
+    {Yellow, Yellow, Yellow, Yellow, Yellow, Black, Black, Black},
+    {Yellow, Yellow, Yellow, Yellow, Yellow, Yellow, Yellow, Yellow},
+    {Black, Yellow, Yellow, Yellow, Yellow, Yellow, Yellow, Black},
+    {Black, Black, Yellow, Yellow, Yellow, Yellow, Black, Black}
+};
+static uint16_t blinky[8][8] = {
+    {Black, Red, Red, Red, Red, Red, Red, Black},
+    {Red, Red, White, Red, Red, White, Red, Red},
+    {Red, Red, White, Red, Red, White, Red, Red},
+    {Red, Red, Red, Red, Red, Red, Red, Red},
+    {Red, White, Red, Red, Red, Red, White, Red},
+    {Red, White, Red, Red, Red, Red, White, Red},
+    {Red, Red, White, White, White, White, Red, Red},
+    {Black, Red, Red, Red, Red, Red, Red, Black}
+};
+static uint16_t normal[8][8] = {
+    {Black, Black, Black, Black, Black, Black, Black, Black},
+    {Black, Black, Black, Black, Black, Black, Black, Black},
+    {Black, Black, Black, White, White, Black, Black, Black},
+    {Black, Black, Black, White, White, Black, Black, Black},
+    {Black, Black, Black, White, White, Black, Black, Black},
+    {Black, Black, Black, White, White, Black, Black, Black},
+    {Black, Black, Black, Black, Black, Black, Black, Black},
+    {Black, Black, Black, Black, Black, Black, Black, Black}
+};
+static uint16_t powerpill[8][8] = {
+    {Black, Black, Black, Black, Black, Black, Black, Black},
+    {Black, Black, Blue, Blue, Blue, Blue, Black, Black},
+    {Black, Blue, Blue, Blue, Blue, Blue, Blue, Black},
+    {Black, Blue, Blue, Blue, Blue, Blue, Blue, Black},
+    {Black, Blue, Blue, Blue, Blue, Blue, Blue, Black},
+    {Black, Blue, Blue, Blue, Blue, Blue, Blue, Black},
+    {Black, Black, Blue, Blue, Blue, Blue, Black, Black},
+    {Black, Black, Black, Black, Black, Black, Black, Black}
+};
+
+
+
+void drawNormalPill(uint16_t Xpos,uint16_t Ypos);
+void drawBigPill(uint16_t Xpos,uint16_t Ypos);
+void drawPacMan(uint16_t Xpos,uint16_t Ypos);
+void drawGhost(uint16_t Xpos,uint16_t Ypos);
+void emptytile(uint16_t Xpos, uint16_t Ypos); 
+
 #endif 
 
 /*********************************************************************************************************
