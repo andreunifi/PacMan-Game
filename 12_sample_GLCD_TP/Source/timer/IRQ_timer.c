@@ -241,7 +241,7 @@ void TIMER3_IRQHandler (void){
     // Difficulty logic based on 'time'
     if (time > 45) {
         // Execute action for 100 ns interval
-        if (counter100ns >= 30000) {
+        if (counter100ns >= 300000) {
             // Action for difficulty 1
            moveGhost(&blinkly.prevx,&blinkly.prevy,MAP_WIDTH,MAP_HEIGHT,wallstiles,map,blinkly.status,player.x,player.y);
 						//PutChar(x*8,y*16,'M',Green,Black);

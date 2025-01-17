@@ -44,7 +44,7 @@ extern volatile int wallstiles[MAP_HEIGHT*MAP_WIDTH];
 
 PlayerInfo player;
 GhostInfo blinkly;
-volatile int pause=1;
+volatile int pause_=1;
 uint16_t screenwidht=240;
 uint16_t screenheight=320;
 
@@ -160,13 +160,13 @@ int main(void)
 	drawPacMan(27*8,19*16);
 	//GUI_Text(27*8,19*16,(uint8_t *)"P",Yellow,Black);
 	
-	GUI_Text(0,15*16,(uint8_t *)"Score_Can",White,Black);
+	GUI_Text(0,15*16,(uint8_t *)"Score_C",White,Black);
 	
 	
-	GUI_Text(13*8,15*16,(uint8_t *)"Time_Can",White,Black);
+	GUI_Text(12*8,15*16,(uint8_t *)"Time_C",White,Black);
 	//GUI_Text(14*8,12*16,(uint8_t *)"0",White,Black);
 	
-	GUI_Text(25*8,15*16,(uint8_t *)"Lives_Can",White,Black);
+	GUI_Text(23*8,15*16,(uint8_t *)"Lives_C",White,Black);
 	
 	
 	joystick_init();
@@ -199,7 +199,7 @@ int main(void)
 	LPC_PINCON->PINSEL1 &= ~(1<<20);
 	LPC_GPIO0->FIODIR |= (1<<26);
 	
-	GUI_Text((13 *8),(MAP_HEIGHT/2)*16,(uint8_t *)"Pause",Yellow,White);
+	GUI_Text((13 *8),(MAP_HEIGHT/2)*8,(uint8_t *)"Pause",Yellow,White);
 	
 	
 	
