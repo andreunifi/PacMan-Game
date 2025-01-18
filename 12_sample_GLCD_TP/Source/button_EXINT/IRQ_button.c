@@ -14,24 +14,49 @@ void EINT0_IRQHandler (void)	  	/* INT0														 */
 	
 	
 	if(pause_){
-		//for(int i=0;i<5;i++){
-	//PutChar((13+i)*8,(MAP_HEIGHT/2)*16, map[MAP_HEIGHT/2][13+i],Yellow,Black);
+		  for (int i = 0; i < 5; i++) {
+        for (int j = 0; j < 2; j++) {
+            int x = 13 + i;
+            int y = MAP_HEIGHT / 2 + j;
+
+            emptytile(x, y); // Clear the tile first
+
+            // Draw based on the map character
+            switch (map[y][x]) {
+                case 'p':
+                    drawPacMan(x, y);
+                    break;
+                case '*':
+                    drawNormalPill(x, y);
+                    break;
+                case 'X':
+                    drawBigPill(x, y);
+                    break;
+                case 'O':
+                    drawGhost(x, y);
+                    break;
+                default:
+                    break; // Do nothing for empty or unknown characters
+            }
+        }
+    }
 		
-	//}
+		
 	enable_timer(0);
 	enable_timer(1);
 	enable_timer(2);
-	init_timer(3,/*0x07A120*/ 0x17D7840); //Blinky timer doesn't actually work. Why?
+	//init_timer(3,/*0x07A120*/ 0x17D7840); //Blinky timer doesn't actually work. Why?
 
 	enable_timer(3);
+	
 	pause_=0;
 	}else if (pause_==0){
 	disable_timer(0);
 	disable_timer(1);
-	disable_timer(2);
 	disable_timer(3);
+	disable_timer(2);
 	pause_=1;
-	GUI_Text((13 *8),(MAP_HEIGHT/2)*16,(uint8_t *)"Pause",Yellow,White);	
+	GUI_Text((13 *8),(MAP_HEIGHT/2)*8,(uint8_t *)"Pause",Yellow,White);	
 	}
 	LPC_SC->EXTINT &= (1 << 0);     /* clear pending interrupt         */
 	

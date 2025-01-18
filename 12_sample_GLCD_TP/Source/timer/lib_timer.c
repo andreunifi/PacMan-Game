@@ -53,10 +53,15 @@ void disable_timer( uint8_t timer_num )
   {
 	LPC_TIM0->TCR = 0;
   }
-  else
+  else if( timer_num == 1) 
   {
 	LPC_TIM1->TCR = 0;
-  }
+  }else if( timer_num == 2){
+	LPC_TIM2->TCR = 0;
+	}
+	else if( timer_num == 3){
+	LPC_TIM3->TCR = 0;
+	}
   return;
 }
 
