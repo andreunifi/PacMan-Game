@@ -13,13 +13,13 @@ void drawScore(){
 };
 void drawLives(){
 		if(lives == 1)
-			GUI_Text(27*8,19*16,(uint8_t *)"P",Yellow,Black);
+			drawPacMan(29,38);
 		
 		if (lives == 2)
-			GUI_Text(27*8,19*16,(uint8_t *)"PP",Yellow,Black);
+			drawPacMan(28,38);
 		
 		if (lives == 3)
-			GUI_Text(27*8,19*16,(uint8_t *)"PPP",Yellow,Black);
+			drawPacMan(27,38);
 };
 
 

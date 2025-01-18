@@ -176,10 +176,10 @@ void TIMER1_IRQHandler (void) //used to generate the countdown timer. #todo: can
 		blinkly.prevy=12;
 		blinkly.x=14;
 		blinkly.y=12;
-				
+			//TODO: check this code
 		map[10][2]='O';
 		drawGhost(14,12);	
-		//PutChar(14*8,12*16,'O',Red,Black);	
+		
 			
 		blinkly.status=1;
 		blinkly.respawntime=3;	

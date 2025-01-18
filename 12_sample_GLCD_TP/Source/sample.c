@@ -157,7 +157,7 @@ int main(void)
 	//GUI_Text(14*8,12*16,(uint8_t *)"0",White,Black);
 	
 	GUI_Text(25*8,18*16,(uint8_t *)"Lives",White,Black);
-	drawPacMan(27*8,19*16);
+	drawPacMan(29,38);
 	//GUI_Text(27*8,19*16,(uint8_t *)"P",Yellow,Black);
 	
 	GUI_Text(0,15*16,(uint8_t *)"Score_C",White,Black);
@@ -187,7 +187,7 @@ int main(void)
 	
 	//init_timer(2,0x225510); //60 seconds timer
 	
-	reset_timer(3);
+	//reset_timer(3);
 	init_timer(3,/*0x07A120*/ 0x225510 ); //Blinky timer doesn't actually work. Why?
 	
 	//enable_timer(3);
