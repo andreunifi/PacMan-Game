@@ -100,13 +100,97 @@ void generatePower(){
 void TIMER0_IRQHandler (void) //this is the main game tick()
 {
 	
-	
+	//player movement code
 		
 	move(&player.x, &player.y, dir, MAP_WIDTH,MAP_HEIGHT, wallstiles,map);
 	
 
+	//blinkly movement code
 	
+	 static int counter100ns = 0; // Counter for 100 ns actions
+    static int counter50ns = 0;  // Counter for 50 ns actions
+    static int counter20ns = 0;  // Counter for 20 ns actions
 
+    // Increment counters with each interrupt
+    counter100ns += 10;  // 10 ns per interrupt
+    counter50ns += 10;
+    counter20ns += 10;
+		
+	
+		
+		
+	
+		
+    // Difficulty logic based on 'time'
+    if (time > 45) {
+        // Execute action for 100 ns interval
+        if (counter100ns >=60) {
+            // Action for difficulty 1
+           moveGhost(&blinkly.prevx,&blinkly.prevy,MAP_WIDTH,MAP_HEIGHT,wallstiles,map,blinkly.status,player.x,player.y);
+						//PutChar(x*8,y*16,'M',Green,Black);
+            counter100ns = 0; // Reset counter
+        }
+    } else if (time >= 30 && time < 45) {
+        // Execute action for 50 ns interval
+        if (counter50ns >= 40) {
+            // Action for difficulty 2
+            moveGhost(&blinkly.prevx,&blinkly.prevy,MAP_WIDTH,MAP_HEIGHT,wallstiles,map,blinkly.status,player.x,player.y);
+						//PutChar(x*8,y*16,'K',Green,Black);
+            counter50ns = 0; // Reset counter
+        }
+    } else if (time < 30  ) {
+        // Execute action for 20 ns interval
+        if (counter20ns >= 20) {
+            // Action for difficulty 3
+            moveGhost(&blinkly.prevx,&blinkly.prevy,MAP_WIDTH,MAP_HEIGHT,wallstiles,map,blinkly.status,player.x,player.y);
+						//PutChar(x*8,y*16,'D',Green,Black);
+            counter20ns = 0; // Reset counter
+        }
+    }
+		
+		if(blinkly.x == player.x && blinkly.y == player.y && blinkly.status==1){
+			if(player.lives>1){
+			map[player.y][player.x]=' ';
+			emptytile(player.x,player.y);
+			//PutChar(player.x*8,player.y*16,' ',Black,Black);	
+				
+			player.x=1;
+			player.y=1;				
+			map[1][1]='P';
+			drawPacMan(player.x,player.y);
+			//PutChar(player.x*8,player.y*16,'p',Yellow,Black);
+    // Update position
+
+
+			
+			
+
+
+			map[blinkly.y][blinkly.x]=' ';
+
+			blinkly.prevx=14;
+			blinkly.prevy=12;
+			blinkly.x=14;
+			blinkly.y=12;
+			map[14][12]='O';
+			drawGhost(blinkly.x,blinkly.y);
+			//PutChar(blinkly.x*8,blinkly.y*16,'O',Red,Black);			
+
+			
+			
+			
+			
+			player.lives--;
+			}else{
+				disable_timer(0);
+				disable_timer(1);
+				disable_timer(2);
+				disable_timer(3);
+				GUI_Text((11 *8),(MAP_HEIGHT/2)*16,(uint8_t *)"Game Over!",Red,White);
+			}
+			
+		}
+ 
 		
 	
 	
@@ -225,89 +309,7 @@ void TIMER2_IRQHandler (void)
 void TIMER3_IRQHandler (void){
 		
 
- static int counter100ns = 0; // Counter for 100 ns actions
-    static int counter50ns = 0;  // Counter for 50 ns actions
-    static int counter20ns = 0;  // Counter for 20 ns actions
 
-    // Increment counters with each interrupt
-    counter100ns += 10;  // 10 ns per interrupt
-    counter50ns += 10;
-    counter20ns += 10;
-		
-	
-		
-		
-	
-		
-    // Difficulty logic based on 'time'
-    if (time > 45) {
-        // Execute action for 100 ns interval
-        if (counter100ns >=600) {
-            // Action for difficulty 1
-           moveGhost(&blinkly.prevx,&blinkly.prevy,MAP_WIDTH,MAP_HEIGHT,wallstiles,map,blinkly.status,player.x,player.y);
-						//PutChar(x*8,y*16,'M',Green,Black);
-            counter100ns = 0; // Reset counter
-        }
-    } else if (time >= 30 && time < 45) {
-        // Execute action for 50 ns interval
-        if (counter50ns >= 400) {
-            // Action for difficulty 2
-            moveGhost(&blinkly.prevx,&blinkly.prevy,MAP_WIDTH,MAP_HEIGHT,wallstiles,map,blinkly.status,player.x,player.y);
-						//PutChar(x*8,y*16,'K',Green,Black);
-            counter50ns = 0; // Reset counter
-        }
-    } else if (time < 30  ) {
-        // Execute action for 20 ns interval
-        if (counter20ns >= 200) {
-            // Action for difficulty 3
-            moveGhost(&blinkly.prevx,&blinkly.prevy,MAP_WIDTH,MAP_HEIGHT,wallstiles,map,blinkly.status,player.x,player.y);
-						//PutChar(x*8,y*16,'D',Green,Black);
-            counter20ns = 0; // Reset counter
-        }
-    }
-		
-		if(blinkly.x == player.x && blinkly.y == player.y && blinkly.status==1){
-			if(player.lives>1){
-			map[player.y][player.x]=' ';
-			emptytile(player.x,player.y);
-			//PutChar(player.x*8,player.y*16,' ',Black,Black);	
-				
-			player.x=1;
-			player.y=1;				
-			map[1][1]='P';
-			drawPacMan(player.x,player.y);
-			//PutChar(player.x*8,player.y*16,'p',Yellow,Black);
-    // Update position
-
-
-			
-			
-
-
-			map[blinkly.y][blinkly.x]=' ';
-
-			blinkly.prevx=14;
-			blinkly.prevy=12;
-			blinkly.x=14;
-			blinkly.y=12;
-			map[14][12]='O';
-			drawGhost(blinkly.x,blinkly.y);
-			//PutChar(blinkly.x*8,blinkly.y*16,'O',Red,Black);			
-
-			
-			
-			
-			
-			player.lives--;
-			}else{
-				disable_timer(0);
-				disable_timer(1);
-				disable_timer(2);
-				disable_timer(3);
-				GUI_Text((11 *8),(MAP_HEIGHT/2)*16,(uint8_t *)"Game Over!",Red,White);
-			}
-			
-		}
 		LPC_TIM3->IR = 1;
 };
 

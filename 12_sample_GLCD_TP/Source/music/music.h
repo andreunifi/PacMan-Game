@@ -2,6 +2,7 @@
 #define MUSIC_H
 
 #include "timer.h"
+#include "lpc17xx.h"
 //Default: 1.65
 #define SPEEDUP 1.6
 
