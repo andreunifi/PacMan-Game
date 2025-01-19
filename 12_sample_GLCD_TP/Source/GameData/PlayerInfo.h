@@ -20,7 +20,7 @@ extern int score;
 extern int cointiles[MAP_HEIGHT*MAP_WIDTH];
 extern int poweruptiles[MAP_HEIGHT*MAP_WIDTH];
 extern int teleportlocation[MAP_HEIGHT*MAP_WIDTH];
-
+void drawLives();
 typedef struct {
     int lives;
     int x, y;

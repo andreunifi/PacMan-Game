@@ -166,7 +166,11 @@ int move(int* prex, int* prey, int dir, int width, int height, const int* wallti
 		if(newx == blinkly.x && newy == blinkly.y && blinkly.status==2){
 			blinkly.status=3;
 			blinkly.remainingtime=10;
+			score+=100;
 			
+			sprintf(scorechar,
+               "%d", score);
+			drawScore();
 			
 	
     // Update position after being eaten

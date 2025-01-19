@@ -47,7 +47,6 @@ extern int wallstiles[MAP_HEIGHT*MAP_WIDTH];
 extern int cointiles[MAP_HEIGHT*MAP_WIDTH];
 extern int poweruptiles[MAP_HEIGHT*MAP_WIDTH];
 extern int teleportlocation[MAP_HEIGHT*MAP_WIDTH];
-
 extern GhostInfo blinkly;
 
 
@@ -149,7 +148,7 @@ void TIMER0_IRQHandler (void) //this is the main game tick()
     }
 		
 		if(blinkly.x == player.x && blinkly.y == player.y && blinkly.status==1){
-			if(player.lives>1){
+			if(lives>1){
 			map[player.y][player.x]=' ';
 			emptytile(player.x,player.y);
 			//PutChar(player.x*8,player.y*16,' ',Black,Black);	
@@ -179,8 +178,21 @@ void TIMER0_IRQHandler (void) //this is the main game tick()
 			
 			
 			
+
+		
+		if (lives == 2)
+			emptytile(28,38);
+		
+		if (lives == 3)
+			emptytile(27,38);
 			
-			player.lives--;
+			
+			
+			lives--;
+			
+			
+			
+			
 			}else{
 				disable_timer(0);
 				disable_timer(1);

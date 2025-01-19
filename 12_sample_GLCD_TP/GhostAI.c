@@ -97,8 +97,8 @@ int moveGhost(int *prex, int *prey, int width, int height, const int* walltiles,
 }
 				 
 int aStar(int startX, int startY, int targetX, int targetY, int width, int height, const int* walltiles, int* nextX, int* nextY) {
-    int bestX = startX, bestY = startY;
-    int bestScore = heuristic(startX, startY, targetX, targetY);
+      int bestX = startX, bestY = startY;
+			int bestScore = heuristic(startX, startY, targetX, targetY);
 
     const int dx[] = {0, 1, 0, -1}; // Right, Down, Left, Up
     const int dy[] = {-1, 0, 1, 0};
