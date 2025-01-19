@@ -301,15 +301,15 @@ void TIMER2_IRQHandler (void)
 	LPC_DAC->DACR = currentValue <<6;
 	sineticks++;
 	if(sineticks==45) sineticks=0;
-	
   LPC_TIM2->IR = 1;			/* clear interrupt flag */
   return;
 }
 
 void TIMER3_IRQHandler (void){
 		
-
-
+	
+		disable_timer(2);
+		//disable_timer(3);
 		LPC_TIM3->IR = 1;
 };
 

@@ -89,14 +89,17 @@ void reset_timer( uint8_t timer_num )
 	regVal = LPC_TIM1->TCR;
 	regVal |= 0x02;
 	LPC_TIM1->TCR = regVal;
+		
   }else if(timer_num == 2){
 	regVal = LPC_TIM2->TCR;
-	regVal |= 0x02;	
+	regVal |= 0x02;
+	LPC_TIM2->TCR = regVal;
 		
 	}else if(timer_num == 3){
-	
+		
 	regVal = LPC_TIM3->TCR;
 	regVal |= 0x02;
+	LPC_TIM3->TCR = regVal;
 	}
   return;
 }
@@ -184,7 +187,7 @@ uint32_t init_timer ( uint8_t timer_num, uint32_t TimerInterval )
 	return (1);
 	}else if( timer_num == 3){
 	LPC_TIM3->MR0 = TimerInterval;
-	LPC_TIM3->MCR = 3;				/* Interrupt and Reset on MR1 */
+	LPC_TIM3->MCR = 7;				/* Interrupt and Reset on MR1 */
 
 	NVIC_EnableIRQ(TIMER3_IRQn);
 	NVIC_SetPriority(TIMER3_IRQn,1);	
