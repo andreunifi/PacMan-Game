@@ -224,6 +224,7 @@ void TIMER2_IRQHandler (void)
 
 void TIMER3_IRQHandler (void){
 		
+
  static int counter100ns = 0; // Counter for 100 ns actions
     static int counter50ns = 0;  // Counter for 50 ns actions
     static int counter20ns = 0;  // Counter for 20 ns actions
@@ -241,7 +242,7 @@ void TIMER3_IRQHandler (void){
     // Difficulty logic based on 'time'
     if (time > 45) {
         // Execute action for 100 ns interval
-        if (counter100ns >= 300000) {
+        if (counter100ns >=600) {
             // Action for difficulty 1
            moveGhost(&blinkly.prevx,&blinkly.prevy,MAP_WIDTH,MAP_HEIGHT,wallstiles,map,blinkly.status,player.x,player.y);
 						//PutChar(x*8,y*16,'M',Green,Black);
@@ -249,7 +250,7 @@ void TIMER3_IRQHandler (void){
         }
     } else if (time >= 30 && time < 45) {
         // Execute action for 50 ns interval
-        if (counter50ns >= 150000) {
+        if (counter50ns >= 400) {
             // Action for difficulty 2
             moveGhost(&blinkly.prevx,&blinkly.prevy,MAP_WIDTH,MAP_HEIGHT,wallstiles,map,blinkly.status,player.x,player.y);
 						//PutChar(x*8,y*16,'K',Green,Black);
@@ -257,7 +258,7 @@ void TIMER3_IRQHandler (void){
         }
     } else if (time < 30  ) {
         // Execute action for 20 ns interval
-        if (counter20ns >= 100000) {
+        if (counter20ns >= 200) {
             // Action for difficulty 3
             moveGhost(&blinkly.prevx,&blinkly.prevy,MAP_WIDTH,MAP_HEIGHT,wallstiles,map,blinkly.status,player.x,player.y);
 						//PutChar(x*8,y*16,'D',Green,Black);
@@ -266,7 +267,7 @@ void TIMER3_IRQHandler (void){
     }
 		
 		if(blinkly.x == player.x && blinkly.y == player.y && blinkly.status==1){
-			if(player.lives>0){
+			if(player.lives>1){
 			map[player.y][player.x]=' ';
 			emptytile(player.x,player.y);
 			//PutChar(player.x*8,player.y*16,' ',Black,Black);	
@@ -307,6 +308,7 @@ void TIMER3_IRQHandler (void){
 			}
 			
 		}
+		LPC_TIM3->IR = 1;
 };
 
 /******************************************************************************

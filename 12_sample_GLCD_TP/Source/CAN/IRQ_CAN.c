@@ -16,7 +16,6 @@
 #include <LPC17xx.h>                  /* LPC17xx definitions */
 #include "CAN.h"                      /* LPC17xx CAN adaption layer */
 #include "../GLCD/GLCD.h"
-
 extern uint8_t icr ; 										//icr and result must be global in order to work with both real and simulated landtiger.
 extern uint32_t result;
 extern CAN_msg       CAN_TxMsg;    /* CAN message for sending */
@@ -30,6 +29,36 @@ static int puntiInviati2 = 0;
 
 uint16_t val_RxCoordX = 0;            /* Locals used for display */
 uint16_t val_RxCoordY = 0;
+
+
+
+volatile char scorechar_rx[6];
+
+volatile char liveschar_rx[3];
+
+volatile char timechar_rx[3];
+
+
+
+void drawScore_(){
+		GUI_Text(0,19*16,(uint8_t *)scorechar_rx,White,Black);
+
+};
+void drawLives_(char lives_rx){
+		if(lives_rx == 1)
+			drawPacMan(29,38);
+		
+		if (lives_rx == 2)
+			drawPacMan(28,38);
+		
+		if (lives_rx == 3)
+			drawPacMan(27,38);
+};
+
+void drawTime_(){
+GUI_Text(15*8,19*16,(uint8_t *)timechar_rx,White,Black);
+};
+
 
 /*----------------------------------------------------------------------------
   CAN interrupt handler
@@ -67,7 +96,19 @@ void CAN_IRQHandler (void)  {
 		
 		uint16_t score_rx = (CAN_RxMsg.data[2] << 8);
 		score_rx = score_rx | CAN_RxMsg.data[3];
-		GUI_Text(7*8,19*16,(uint8_t *)"Rx",White,Black);
+		//GUI_Text(7*8,19*16,(uint8_t *)"Rx",White,Black);
+		
+		
+		sprintf(scorechar_rx,
+               "%d", score_rx);
+		sprintf(timechar_rx,
+               "%d", time_rx);
+		
+		drawScore_();
+		drawLives_(lives_rx);
+		drawTime_();
+		
+		
 		
 	}
 	if (icr & (1 << 1)) {

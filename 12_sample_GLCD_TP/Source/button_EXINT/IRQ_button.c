@@ -3,6 +3,7 @@
 #include "timer/timer.h"
 #include "GLCD/GLCD.h" 
 #include "stdio.h"
+#include "RIT/RIT.h"
 #define MAP_WIDTH 30    // 240 pixels / 8px per character
 #define MAP_HEIGHT 30
 
@@ -41,16 +42,17 @@ void EINT0_IRQHandler (void)	  	/* INT0														 */
         }
     }
 		
-		
+	enable_RIT();	
 	enable_timer(0);
 	enable_timer(1);
 	enable_timer(2);
-	//init_timer(3,/*0x07A120*/ 0x17D7840); //Blinky timer doesn't actually work. Why?
+	init_timer(3,0x07A120 /*0x17D7840*/); //Blinky timer doesn't actually work. Why?
 
 	enable_timer(3);
 	
 	pause_=0;
 	}else if (pause_==0){
+	disable_RIT();	
 	disable_timer(0);
 	disable_timer(1);
 	disable_timer(3);
