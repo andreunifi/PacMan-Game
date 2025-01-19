@@ -135,8 +135,11 @@ int move(int* prex, int* prey, int dir, int width, int height, const int* wallti
 			sprintf(scorechar,
                "%d", score);
 			drawScore();
+			if(blinkly.status == 1){
 			blinkly.status=2;
 			blinkly.remainingtime=10;
+			}	
+			
 			if((int)(score / 1000 ) - (int)(lastscore / 1000) == 1)
 				if(lives <3){
 				lives++;

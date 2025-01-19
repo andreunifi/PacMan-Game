@@ -83,7 +83,7 @@ int moveGhost(int *prex, int *prey, int width, int height, const int* walltiles,
 				*prey=nextY;
 				
 				map[nextY][nextX]='0';
-				drawGhost(nextX,nextY);
+				drawGhostScared(nextX,nextY); //modified blinkly
 				//PutChar(nextX*8,nextY*16,'O',Blue,Black);
         blinkly.x=nextX;
 				blinkly.y=nextY;

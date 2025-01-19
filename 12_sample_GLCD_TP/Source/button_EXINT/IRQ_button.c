@@ -68,43 +68,7 @@ void EINT0_IRQHandler (void)	  	/* INT0														 */
 	
 	
 	
-	/*
-	if(pause){
-		
-
-		for(int i=0;i<5;i++){
-			if(map[MAP_HEIGHT/2][13+i] =='P'){
-			emptytile((13+i),MAP_HEIGHT/2);	
-			drawPacMan((13+i),MAP_HEIGHT/2);}
-			if(map[MAP_HEIGHT/2][13+i] =='*'){
-			emptytile((13+i),MAP_HEIGHT/2);	
-			drawNormalPill(13+i,MAP_HEIGHT/2);}	
-			if(map[MAP_HEIGHT/2][13+i] =='X'){
-			emptytile((13+i),MAP_HEIGHT/2);	
-			drawBigPill(13+i,MAP_HEIGHT/2);}
-			if(map[MAP_HEIGHT/2][13+i] =='O'){
-			emptytile((13+i),MAP_HEIGHT/2);	
-			drawGhost(13+i,MAP_HEIGHT/2);}	
-			
-	//PutChar((13+i)*8,(MAP_HEIGHT/2)*16, map[MAP_HEIGHT/2][13+i],Yellow,Black);
-		}
-
-	enable_timer(0);
-	enable_timer(1);
-	enable_timer(2);
-
-
-	enable_timer(3);
-	pause=0;
-	}else{
-	disable_timer(0);
-	disable_timer(1);
-	disable_timer(2);
-	disable_timer(3);
-	pause=1;
-	GUI_Text((13 *8),(MAP_HEIGHT/2)*8,(uint8_t *)"Pause",Yellow,White);	
-	}
-	LPC_SC->EXTINT &= (1 << 0); */     /* clear pending interrupt         */
+	
 }
 
 

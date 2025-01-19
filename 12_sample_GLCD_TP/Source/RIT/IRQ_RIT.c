@@ -105,6 +105,101 @@ NOTE song[] =
 };
 
 
+NOTE win[] = {
+  // 1
+  {c4, time_semicroma},
+  {c5, time_semicroma},
+  {g4, time_semicroma},
+  {e4, time_semicroma},
+  {c5, time_semicroma},
+  {g4, time_semicroma},
+  {e4, time_semicroma},
+  {pause_music, time_semicroma},
+  //2
+  {d4, time_semicroma},
+  //{d5, time_semicroma},
+  {a4, time_semicroma},
+  {f4, time_semicroma},
+  //{d5, time_semicroma},
+  {a4, time_semicroma},
+  {f4, time_semicroma},
+  {pause_music, time_semicroma},
+  //3
+  {c4, time_semicroma},
+  {c5, time_semicroma},
+  {g4, time_semicroma},
+  {e4, time_semicroma},
+  {c5, time_semicroma},
+  {g4, time_semicroma},
+  {e4, time_semicroma},
+  {pause_music, time_semicroma},
+  // 4
+  {e4, time_biscroma},
+  {f4, time_biscroma},
+  {g4, time_biscroma},
+  {pause_music, time_biscroma},
+  {g4, time_biscroma},
+  //{a4b, time_biscroma},
+  {a4, time_biscroma},
+  {pause_music, time_biscroma},
+  {a4, time_biscroma},
+  //{b4b, time_biscroma},
+  {b4, time_biscroma},
+  {pause_music, time_biscroma},
+  {c5, time_croma},
+  {pause_music, time_semicroma}
+  
+};
+
+
+NOTE theme[] = 
+{
+	// 1
+	{c4, time_semicroma},
+	{c5, time_semicroma},
+	{g4, time_semicroma},
+	{e4, time_semicroma},
+	{c5, time_semicroma},
+	{g4, time_semicroma},
+	{e4, time_semicroma},
+	{pause_music, time_semicroma},
+	//2
+	{d4, time_semicroma},
+	//{d5, time_semicroma},
+	{a3b, time_semicroma},
+	{f4, time_semicroma},
+	{d4, time_semicroma},
+	{a4, time_semicroma},
+	{f4, time_semicroma},
+	{pause_music, time_semicroma},
+	//3
+	{c4, time_semicroma},
+	{c5, time_semicroma},
+	{g4, time_semicroma},
+	{e4, time_semicroma},
+	{c5, time_semicroma},
+	{g4, time_semicroma},
+	{e4, time_semicroma},
+	{pause_music, time_semicroma},
+	// 4
+	{e4, time_biscroma},
+	{f4, time_biscroma},
+	{g4, time_biscroma},
+	{pause_music, time_biscroma},
+	{g4, time_biscroma},
+	{a4, time_biscroma},
+	{a4, time_biscroma},
+	{pause_music, time_biscroma},
+	{a4, time_biscroma},
+	{b4, time_biscroma},
+	{b4, time_biscroma},
+	{pause_music, time_biscroma},
+	{c5, time_semicroma},
+	{pause_music, time_semicroma}
+	
+};
+
+
 
 
 
@@ -218,16 +313,26 @@ void RIT_IRQHandler (void)
 	
 	static int currentNote = 0;
 	static int ticks = 0;
-	if(!isNotePlaying())
+	static int playmusic=1;
+	if(!isNotePlaying() && playmusic)
 	{
 		++ticks;
 		if(ticks == UPTICKS)
 		{
 			ticks = 0;
-			playNote(song[currentNote++]);
+			//playNote(song[currentNote++]);
+			//playNote(win[currentNote++]);
+			playNote(theme[currentNote++]);
 		}
 	}
-	
+	if(currentNote == 27 )
+	{
+		playmusic=0;
+		currentNote=0;
+		disable_timer(3);
+		disable_timer(2);
+		
+	}
 	
 
 

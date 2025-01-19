@@ -136,12 +136,22 @@ static uint16_t powerpill[8][8] = {
     {Black, Black, Black, Black, Black, Black, Black, Black}
 };
 
-
+static uint16_t blinklyscared[8][8] = {
+{White, Blue, Blue, Blue, Blue, Blue, Blue, White},
+{Blue, Blue, White, Blue, Blue, White, Blue, Blue},
+{Blue, Blue, White, Blue, Blue, White, Blue, Blue},
+{Blue, Blue, Blue, Blue, Blue, Blue, Blue, Blue},
+{Blue, White, Blue, Blue, Blue, Blue, White, Blue},
+{Blue, White, Blue, Blue, Blue, Blue, White, Blue},
+{Blue, Blue, White, White, White, White, Blue, Blue},
+{White, Blue, Blue, Blue, Blue, Blue, Blue, White}
+};
 
 void drawNormalPill(uint16_t Xpos,uint16_t Ypos);
 void drawBigPill(uint16_t Xpos,uint16_t Ypos);
 void drawPacMan(uint16_t Xpos,uint16_t Ypos);
 void drawGhost(uint16_t Xpos,uint16_t Ypos);
+void drawGhostScared(uint16_t Xpos,uint16_t Ypos);
 void emptytile(uint16_t Xpos, uint16_t Ypos); 
 
 #endif 
